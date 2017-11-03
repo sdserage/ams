@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import './ProductInquiry.css';
+import './ViewInquiries.css';
 /* Components */
 
-export default class ProductInquiry extends Component {
+export default class ViewInquiries extends Component {
   constructor(props){
     super(props);
   }
 
   render(){
     return (
-      <main id='product-inquiry'>
-        Product Inquiry
+      <main id='view-inquiries'>
+        View Inquiries
       </main>
     )
   }

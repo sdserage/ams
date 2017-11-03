@@ -1,0 +1,8 @@
+CREATE TABLE valves (
+  item_id INT REFERENCES inquiry_items (item_id) NOT NULL,
+  temperature DECIMAL,
+  pressure DECIMAL,
+  pipe_size DECIMAL,
+  pipe_additional_information VARCHAR(3000),
+  additional_information VARCHAR(3000)
+);
