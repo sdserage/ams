@@ -12,14 +12,14 @@ export default class Main extends Component {
   }
 
   componentDidMount(){
-    scrollToElement(`.${this.props.view}`,{
+    scrollToElement(`#${this.props.view}`,{
       duration: 10
     });
   }
 
   render(){
     return (
-      <main>
+      <main id='main'>
         <Home/>
         <About/>
         <Contact/>
