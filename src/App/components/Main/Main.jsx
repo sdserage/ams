@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './Main.css';
 import scrollToElement from 'scroll-to-element';
+/* Components */
+import About from './About/About';
+import Contact from './Contact/Contact';
+import Home from './Home/Home';
 
 export default class Main extends Component {
   constructor(props){
@@ -15,11 +19,11 @@ export default class Main extends Component {
 
   render(){
     return (
-      <div>
-        <div className='test home'>Home</div>
-        <div className='test about'>About</div>
-        <div className='test contact'>Contact</div>
-      </div>
+      <main>
+        <Home/>
+        <About/>
+        <Contact/>
+      </main>
     )
   }
 };
