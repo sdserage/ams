@@ -2,10 +2,15 @@
 $logo-side-length: 58px
 
 #header
+  padding: 0 10vw
   color: $lighterColor
   background: $mediumColor
   display: flex
   justify-content: space-between
+  position: fixed
+  top: 0
+  left: 0
+  width: 80vw
 
   nav
     padding: 10px
@@ -14,12 +19,12 @@ $logo-side-length: 58px
     align-items: center
     justify-content: space-between
 
-    a
+    p
       padding: 20px 40px 20px 40px
       border: $mediumColor solid 2px
       transition: .5s border-color
 
-    a:hover
+    p:hover
       border-color: $lighterColor
       transition: 1.80s border-color
 
@@ -28,3 +33,6 @@ $logo-side-length: 58px
   height: $logo-side-length
   border: solid $lighterColor 1px
   margin: 10px 10px 10px 10px
+
+.header-spacer
+  margin-bottom: 80px

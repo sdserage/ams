@@ -1,20 +1,25 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
 #header {
+  padding: 0 10vw;
   color: white;
   background: #931621;
   display: flex;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80vw; }
   #header nav {
     padding: 10px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between; }
-    #header nav a {
+    #header nav p {
       padding: 20px 40px 20px 40px;
       border: #931621 solid 2px;
       transition: .5s border-color; }
-    #header nav a:hover {
+    #header nav p:hover {
       border-color: white;
       transition: 1.80s border-color; }
 
@@ -23,3 +28,6 @@
   height: 58px;
   border: solid white 1px;
   margin: 10px 10px 10px 10px; }
+
+.header-spacer {
+  margin-bottom: 80px; }
