@@ -7,15 +7,25 @@ export default function Footer(props){
     <footer id='footer'>
       <nav>
         <div className='footer-box'>
-          <h3>Home</h3>
-          <p>About</p>
-          <p>Contact</p>
+          <Link to='/'>
+            <h3>Home</h3>
+          </Link>
+          <Link to='/about'>
+            <p>About</p>
+          </Link>
+          <Link to='/contact'>
+            <p>Contact</p>
+          </Link>
         </div>
         <div className='footer-box'>
-          <h3>Factoids & Tools</h3>
+          <Link to='/factoidsandtools'>
+            <h3>Factoids & Tools</h3>
+          </Link>
         </div>
         <div className='footer-box'>
-          <h3>Product Inquiry</h3>
+          <Link to='/productinquiry'>
+            <h3>Product Inquiry</h3>
+          </Link>
         </div>
       </nav>
       <h4 className='design-info'>Serage Web Design 2017</h4>
