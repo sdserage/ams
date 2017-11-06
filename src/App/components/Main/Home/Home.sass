@@ -1,0 +1,31 @@
+#home
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+  p
+    margin-bottom: 10px
+    line-height: 150%
+
+.temp
+  margin-bottom: 10px
+
+.home-title
+  margin-bottom: 10px
+  align-self: center
+
+.home-subtitle
+  @extend .home-title
+
+hr
+  width: 90vw
+
+.logo-box
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  justify-items: center
+
+.max-air-technology-logo
+  $percent: .30
+  width: 641px * $percent
+  height: 302px * $percent
