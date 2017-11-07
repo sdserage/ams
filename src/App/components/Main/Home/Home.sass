@@ -1,0 +1,47 @@
+#home
+  display: flex
+  flex-direction: column
+  padding: 0 5vw 20px 5vw
+
+.temp
+  margin-bottom: 10px
+
+.home-title
+  margin-bottom: 10px
+  text-align: center
+
+.home-subtitle
+  @extend .home-title
+
+hr
+  width: 90vw
+
+.logo-box
+  margin: 20px
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+  justify-items: center
+
+.max-air-technology-logo
+  $percent: .35
+  width: 641px * $percent
+  height: 302px * $percent
+
+.show-case
+  $percent: .15
+  align-self: center
+  width: 3264px * $percent
+  height: 2448px * $percent
+  border-radius: 5px
+  margin-bottom: 10px
+
+.logo-placeholder
+  font-size: 80px
+  font-weight: bolder
+  align-self: center
+
+//
+  *{
+    Opacity: 1
+    background: gray
+  }

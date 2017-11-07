@@ -1,0 +1,36 @@
+#home {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5vw 20px 5vw; }
+
+.temp {
+  margin-bottom: 10px; }
+
+.home-title, .home-subtitle {
+  margin-bottom: 10px;
+  text-align: center; }
+
+hr {
+  width: 90vw; }
+
+.logo-box {
+  margin: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center; }
+
+.max-air-technology-logo {
+  width: 224.35px;
+  height: 105.7px; }
+
+.show-case {
+  align-self: center;
+  width: 489.6px;
+  height: 367.2px;
+  border-radius: 5px;
+  margin-bottom: 10px; }
+
+.logo-placeholder {
+  font-size: 80px;
+  font-weight: bolder;
+  align-self: center; }
