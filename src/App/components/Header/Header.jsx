@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 export default function Header(props){
   return (
-    <div>
+    <div id='top'>
       <header id='header'>
         <img src={logo} alt='logo'/>
         <nav>
