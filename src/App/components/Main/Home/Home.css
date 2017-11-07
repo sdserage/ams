@@ -29,7 +29,8 @@ hr {
 .show-case {
   align-self: center;
   width: 489.6px;
-  height: 367.2px; }
+  height: 367.2px;
+  border-radius: 5px; }
 
 .logo-placeholder {
   font-size: 80px;
