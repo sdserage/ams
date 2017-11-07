@@ -16,8 +16,6 @@ export default function Home(props){
 
       <img className='show-case' src={showCase} alt='Product show case'/>
 
-      <hr/>
-
       <p>Specializing in the sale, service &amp; design of industrial ventilation systems and; in the sale, service and
       design of industrial process systems, AMS serves its customers with critical aspects of their business.
       Whether ensuring safer &amp; more environmental friendly working conditions for your employees or,
@@ -29,6 +27,7 @@ export default function Home(props){
       {/*<div className='.temp'>LOGOS (Diversitech Air Pollution Solutions,
         Royal Filters, Quality Sourced Manufacturing, Jarecki Valves,
         Quaddax Valves, Max-Air Technology, Winter’s Instruments)</div>*/}
+      <hr/>
 
       <div className='logo-box'>
         <img className='jarecki-valves-logo' src={jareckiValvesLogo} alt='Jarecki Valves logo'/>
