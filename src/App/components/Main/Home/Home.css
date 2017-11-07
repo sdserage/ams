@@ -1,7 +1,7 @@
 #home {
   display: flex;
   flex-direction: column;
-  padding: 0 5vw 20px 5vw; }
+  padding: 0 5vw 10px 5vw; }
 
 .temp {
   margin-bottom: 10px; }
@@ -20,8 +20,8 @@ hr {
   justify-items: center; }
 
 .max-air-technology-logo {
-  width: 224.35px;
-  height: 105.7px; }
+  width: 246.785px;
+  height: 116.27px; }
 
 .show-case {
   align-self: center;
