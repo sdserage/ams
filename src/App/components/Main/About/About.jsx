@@ -4,7 +4,7 @@ import './About.css';
 export default function About(props){
   return (
     <section id='about'>
-      <h1>About</h1>
+      <h1 className="about">About</h1>
 
       <p>
         Air Management Specialists was established in 2006 with the objective to help fill some of the specific &amp;
@@ -26,6 +26,7 @@ export default function About(props){
         gauges, diaphragm seals, thermometers and various other types of process instrumentation as well. Full
         valve automation, assembly and testing is also a part of Air Management Specialists offering.
       </p>
+      
     </section>
   );
 }
