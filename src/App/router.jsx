@@ -8,7 +8,7 @@ import ViewInquiries from './components/ViewInquiries/ViewInquiries';
 
 export default (
   <Switch>
-    <Route exact path='/'           render={()=><Main view='home'/>}/>
+    <Route exact path='/'           render={()=><Main view='top'/>}/>
     <Route path='/about'            render={()=><Main view='about'/>}/>
     <Route path='/contact'          render={()=><Main view='contact'/>}/>
     <Route path='/factoidsandtools' render={()=><FactoidsAndTools view=''/>}/>
