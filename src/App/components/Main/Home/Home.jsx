@@ -4,6 +4,7 @@ import './Home.css';
 import jareckiValvesLogo from '../../../../assets/jarecki-valves-logo.png';
 import maxAirTechnologyLogo from '../../../../assets/max-air-logo-black.png';
 import wintersInstrumentsLogo from '../../../../assets/winters-instruments-logo.png';
+import wintersInstrumentsAward from '../../../../assets/canandas-best-logo.png';
 
 export default function Home(props){
   return (
@@ -24,11 +25,14 @@ export default function Home(props){
       {/*<div className='.temp'>LOGOS (Diversitech Air Pollution Solutions,
         Royal Filters, Quality Sourced Manufacturing, Jarecki Valves,
         Quaddax Valves, Max-Air Technology, Winter’s Instruments)</div>*/}
-        
+
       <div className='logo-box'>
         <img className='jarecki-valves-logo' src={jareckiValvesLogo} alt='Jarecki Valves logo'/>
         <img className='max-air-technology-logo' src={maxAirTechnologyLogo} alt='Max Air Technology logo'/>
-        <img className='winters-instruments-logo' src={wintersInstrumentsLogo} alt="Winter's Instruments logo"/>
+        <div className='winters-container'>
+          <img className='winters-instruments-logo' src={wintersInstrumentsLogo} alt="Winter's Instruments logo"/>
+          <img className='winters-instruments-award' src={wintersInstrumentsAward} alt="Canada's Best Mangaged Companies"/>
+        </div>
       </div>
 
       <hr/>
