@@ -2,6 +2,7 @@
   display: flex
   flex-direction: column
   justify-content: center
+  align-items: center
 
   p
     margin-bottom: 10px
@@ -12,7 +13,6 @@
 
 .home-title
   margin-bottom: 10px
-  align-self: center
 
 .home-subtitle
   @extend .home-title
@@ -21,6 +21,7 @@ hr
   width: 90vw
 
 .logo-box
+  margin: 20px
   display: grid
   grid-template-columns: 1fr 1fr 1fr
   justify-items: center
@@ -29,6 +30,16 @@ hr
   $percent: .35
   width: 641px * $percent
   height: 302px * $percent
+
+.show-case
+  $percent: .15
+  align-self: center
+  width: 3264px * $percent
+  height: 2448px * $percent
+
+.logo-placeholder
+  font-size: 80px
+  font-weight: bolder
 
 //
   *{

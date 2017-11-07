@@ -5,12 +5,16 @@ import jareckiValvesLogo from '../../../../assets/jarecki-valves-logo.png';
 import maxAirTechnologyLogo from '../../../../assets/max-air-logo-black.png';
 import wintersInstrumentsLogo from '../../../../assets/winters-instruments-logo.png';
 import wintersInstrumentsAward from '../../../../assets/canandas-best-logo.png';
+import showCase from '../../../../assets/products1.jpg';
 
 export default function Home(props){
   return (
     <section id='home'>
+      <div className='logo-placeholder'>AMS</div>
       <h1 className='home-title'>Air Management Specialists</h1>
       <h2 className='home-subtitle'>Air Pollution Control / Process Control</h2>
+
+      <img className='show-case' src={showCase} alt='Product show case'/>
 
       <hr/>
 
