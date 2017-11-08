@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+#contact {
+  padding: 20px 5vw 10px 5vw;
+  background: #30BCED;
+  color: #03191E;
+  display: flex;
+  flex-direction: column; }
+  #contact h3, #contact h5 {
+    margin-bottom: 10px; }
+  #contact h5 {
+    color: #931621; }
+
+.contact {
+  margin-bottom: 10px; }
