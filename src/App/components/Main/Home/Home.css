@@ -24,8 +24,25 @@ hr {
   justify-items: center; }
 
 .max-air-technology-logo {
+  margin-bottom: 10px;
   width: 246.785px;
   height: 116.27px; }
+
+.sesto-valves-logo {
+  width: 237.84px;
+  height: 46.56px;
+  margin-bottom: 10px; }
+
+.delta-t-products-logo {
+  width: 297.3px;
+  height: 58.2px;
+  margin-bottom: 10px; }
+
+.winters-container {
+  margin-bottom: 10px; }
+
+.jarecki-valves-logo {
+  margin-bottom: 10px; }
 
 .show-case {
   align-self: center;
