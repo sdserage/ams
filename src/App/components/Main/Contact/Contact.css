@@ -12,3 +12,20 @@
 
 .contact {
   margin-bottom: 10px; }
+
+.social-media {
+  display: flex;
+  justify-content: center; }
+  .social-media p {
+    font-size: 12px; }
+
+.facebook {
+  color: #545E75; }
+  .facebook a {
+    display: flex;
+    flex-direction: column; }
+
+.facebook-icon {
+  width: 100px;
+  height: 100px;
+  align-self: center; }

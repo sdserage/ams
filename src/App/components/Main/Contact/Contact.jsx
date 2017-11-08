@@ -1,5 +1,7 @@
 import React from 'react';
 import './Contact.css';
+/* Assets */
+import faceBookIcon from '../../../../assets/facebook-icon.png';
 
 export default function Contact(props){
   return (
@@ -15,9 +17,14 @@ export default function Contact(props){
         <p>xxxxx City, Utah 00000</p>
       </div>
 
-      <a href='http://www.facebook.com/airmanagementspecialists' target='_blank'>
-        Like us on Facebook!
-      </a>
+      <nav className='social-media'>
+        <div className='facebook'>
+          <a href='http://www.facebook.com/airmanagementspecialists' target='_blank'>
+            <img className='facebook-icon' src={faceBookIcon} alt='Facebook icon'/>
+            <p>Like us on Facebook!</p>
+          </a>
+        </div>
+      </nav>
     </section>
   );
 }
