@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-/* Logos */
+/* Assets */
 import jareckiValvesLogo from '../../../../assets/jarecki-valves-logo.png';
 import maxAirTechnologyLogo from '../../../../assets/max-air-logo-black.png';
 import wintersInstrumentsLogo from '../../../../assets/winters-instruments-logo.png';

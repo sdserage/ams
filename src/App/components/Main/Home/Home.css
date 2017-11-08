@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
 #home {
   display: flex;
   flex-direction: column;
@@ -9,6 +10,9 @@
 .home-title, .home-subtitle {
   margin-bottom: 10px;
   text-align: center; }
+
+.home-subtitle {
+  color: #931621; }
 
 hr {
   width: 90vw; }
