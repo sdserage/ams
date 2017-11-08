@@ -1,10 +1,14 @@
 import React from 'react';
 import './About.css';
+/* Assets */
+import showCase from '../../../../assets/actuatorAndValve.jpg';
 
 export default function About(props){
   return (
     <section id='about'>
       <h1 className="about">About</h1>
+
+      <img className='show-case' src={showCase} alt='Product show case'/>
 
       <p>
         Air Management Specialists was established in 2006 with the objective to help fill some of the specific &amp;
@@ -26,7 +30,7 @@ export default function About(props){
         gauges, diaphragm seals, thermometers and various other types of process instrumentation as well. Full
         valve automation, assembly and testing is also a part of Air Management Specialists offering.
       </p>
-      
+
     </section>
   );
 }

@@ -2,7 +2,9 @@
 #about {
   padding: 20px 5vw 10px 5vw;
   background: #545E75;
-  color: white; }
+  color: white;
+  display: flex;
+  flex-direction: column; }
 
 .about {
   margin-bottom: 10px;
