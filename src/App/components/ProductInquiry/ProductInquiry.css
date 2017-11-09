@@ -9,3 +9,6 @@
 
 .disabled {
   display: none; }
+
+.item-header {
+  padding: 16px; }

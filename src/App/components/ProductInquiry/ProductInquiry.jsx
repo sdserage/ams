@@ -9,31 +9,74 @@ const ACTUATOR = 'Actuator'
     , VALVE = 'Valve';
 
 function Actuator(props){
+  const {
+    item_type,
+    valve_size,
+    valve_additional_information,
+    torque,
+    return_type,
+    stem_dimensions,
+    stem_additional_information,
+    additional_information
+  } = props.item;
   return (
     <Card>
-      <CardHeader
-        title={props.type}
-      />
+      <h2 className='item-header'>{item_type}</h2>
+      <CardText>
+        {valve_size}
+        {valve_additional_information}
+        {torque}
+        {return_type}
+        {stem_dimensions}
+        {stem_additional_information}
+        {additional_information}
+      </CardText>
     </Card>
   );
 }
 
 function DustCollector(props){
+  const {
+    item_type,
+    particulate_types,
+    particulate_size,
+    temperature,
+    additional_information
+  } = props.item;
   return (
     <Card>
-      <CardHeader
-        title={props.type}
-      />
+      <h2 className='item-header'>{item_type}</h2>
+      <CardText>
+        {particulate_types}
+        {particulate_size}
+        {temperature}
+        {additional_information}
+      </CardText>
     </Card>
   );
 }
 
 function Instrumentation(props){
+  const {
+    item_type,
+    process,
+    temperature,
+    pressure,
+    pipe_size,
+    pipe_additional_information,
+    additional_information
+  } = props.item;
   return (
     <Card>
-      <CardHeader
-        title={props.type}
-      />
+      <h2 className='item-header'>{item_type}</h2>
+      <CardText>
+        {process}
+        {temperature}
+        {pressure}
+        {pipe_size}
+        {pipe_additional_information}
+        {additional_information}
+      </CardText>
     </Card>
   );
 }
@@ -98,13 +141,13 @@ export default class ProductInquiry extends Component {
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
         case ACTUATOR:
-          return <Actuator type={item.item_type} key={index}/>;
+          return <Actuator item={item} key={index}/>;
         case DUST_COLLECTOR:
-          return <DustCollector type={item.item_type} key={index}/>;
+          return <DustCollector item={item} key={index}/>;
         case INSTRUMENTATION:
-          return <Instrumentation type={item.item_type} key={index}/>;
+          return <Instrumentation item={item} key={index}/>;
         case VALVE:
-          return <Valve type={item.item_type} key={index}/>;
+          return <Valve item={item} key={index}/>;
         default:
           return null;
       }
