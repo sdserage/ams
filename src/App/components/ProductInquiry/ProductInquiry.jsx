@@ -111,7 +111,9 @@ export default class ProductInquiry extends Component {
     });
     return (
       <main id='product-inquiry'>
-        {displayItems}
+        <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
+          {displayItems}
+        </section>
       </main>
     )
   }
