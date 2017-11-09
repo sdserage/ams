@@ -28,7 +28,7 @@ export default function Footer(props){
           </Link>
         </div>
       </nav>
-      <h4 className='design-info'>Serage Web Design 2017</h4>
+      <h4 className='design-info'>Serage Web Design 2017&trade;</h4>
     </footer>
   );
 }

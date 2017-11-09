@@ -1,7 +1,9 @@
+@import "../../../../partials/themeController"
+
 #home
   display: flex
   flex-direction: column
-  padding: 0 5vw 20px 5vw
+  padding: 0 5vw 10px 5vw
 
 .temp
   margin-bottom: 10px
@@ -12,6 +14,7 @@
 
 .home-subtitle
   @extend .home-title
+  color: $rubyRed
 
 hr
   width: 90vw
@@ -23,9 +26,28 @@ hr
   justify-items: center
 
 .max-air-technology-logo
-  $percent: .35
+  $percent: .385
+  margin-bottom: 10px
   width: 641px * $percent
   height: 302px * $percent
+
+.sesto-valves-logo
+  $percent: .08
+  width: 2973px * $percent
+  height: 582px * $percent
+  margin-bottom: 10px
+
+.delta-t-products-logo
+  $percent: .10
+  width: 2973px * $percent
+  height: 582px * $percent
+  margin-bottom: 10px
+
+.winters-container
+  margin-bottom: 10px
+
+.jarecki-valves-logo
+  margin-bottom: 10px
 
 .show-case
   $percent: .15

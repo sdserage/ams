@@ -1,10 +1,12 @@
 import React from 'react';
 import './Home.css';
-/* Logos */
+/* Assets */
 import jareckiValvesLogo from '../../../../assets/jarecki-valves-logo.png';
 import maxAirTechnologyLogo from '../../../../assets/max-air-logo-black.png';
 import wintersInstrumentsLogo from '../../../../assets/winters-instruments-logo.png';
 import wintersInstrumentsAward from '../../../../assets/canandas-best-logo.png';
+import sestoValvesLogo from '../../../../assets/sesto-valves-logo.png';
+import deltaTProductsLogo from '../../../../assets/delta-t-products-logo.png';
 import showCase from '../../../../assets/products1.jpg';
 
 export default function Home(props){
@@ -34,8 +36,10 @@ export default function Home(props){
         <img className='max-air-technology-logo' src={maxAirTechnologyLogo} alt='Max Air Technology logo'/>
         <div className='winters-container'>
           <img className='winters-instruments-logo' src={wintersInstrumentsLogo} alt="Winter's Instruments logo"/>
-          <img className='winters-instruments-award' src={wintersInstrumentsAward} alt="Canada's Best Mangaged Companies"/>
+          <img className='winters-instruments-award' src={wintersInstrumentsAward} alt="Canada's Best Managaged Companies"/>
         </div>
+        <img className='sesto-valves-logo' src={sestoValvesLogo} alt='Sesto Valves logo'/>
+        <img className='delta-t-products-logo' src={deltaTProductsLogo} alt='Delta T Products logo'/>
       </div>
 
       <hr/>

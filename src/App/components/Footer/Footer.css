@@ -1,6 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
 #footer {
-  color: #30BCED;
+  color: white;
   background: #545E75;
   background: -webkit-linear-gradient(#545E75, #03191E);
   background: -o-linear-gradient(#545E75, #03191E);
@@ -13,7 +13,7 @@
     font-weight: bold;
     margin-bottom: 5px; }
   #footer h3:hover, #footer p:hover {
-    color: white; }
+    color: #30BCED; }
   #footer p {
     font-size: 12px;
     font-weight: bold;
