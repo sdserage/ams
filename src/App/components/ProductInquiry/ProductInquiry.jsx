@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ProductInquiry.css';
 /* Components */
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 import {
   Card,
   CardActions,
@@ -31,32 +32,34 @@ function Actuator(props){
       <h2 className='item-header'>{item_type}</h2>
       <div className='card-info'>
         <CardText>
-          Valve Size: {valve_size}
+          <span>Valve Size: </span>{valve_size}
         </CardText>
 
         <CardText>
-          Valve Additional Information: {valve_additional_information}
+          <span>Valve Additional Information: </span>{valve_additional_information}
         </CardText>
 
         <CardText>
-          Torque: {torque}
+          <span>Torque: </span>{torque}
         </CardText>
 
         <CardText>
-          Return Type: {return_type}
+          <span>Return Type: </span>{return_type}
         </CardText>
 
         <CardText>
-          Stem Dimensions: {stem_dimensions}
+          <span>Stem Dimensions: </span>{stem_dimensions}
         </CardText>
 
         <CardText>
-          Stem Additional Info: {stem_additional_information}
+          <span>Stem Additional Info: </span>{stem_additional_information}
         </CardText>
 
-        <CardText>
-          Additional Info: {additional_information}
-        </CardText>
+        <div className='double-column'>
+          <CardText>
+            <span>Additional Information: </span>{additional_information}
+          </CardText>
+        </div>
       </div>
     </Card>
   );
@@ -73,12 +76,27 @@ function DustCollector(props){
   return (
     <Card>
       <h2 className='item-header'>{item_type}</h2>
-      <CardText>
-        {particulate_types}
-        {particulate_size}
-        {temperature}
-        {additional_information}
-      </CardText>
+      <div className='card-info'>
+        <div className='double-column'>
+          <CardText>
+            <span>Particulate Types: </span>{particulate_types}
+          </CardText>
+        </div>
+
+        <CardText>
+          <span>Particulate Size: </span>{particulate_size}
+        </CardText>
+
+        <CardText>
+          <span>Temperature: </span>{temperature}
+        </CardText>
+
+        <div className='double-column'>
+          <CardText>
+            <span>Additional Information: </span>{additional_information}
+          </CardText>
+        </div>
+      </div>
     </Card>
   );
 }
@@ -96,14 +114,35 @@ function Instrumentation(props){
   return (
     <Card>
       <h2 className='item-header'>{item_type}</h2>
-      <CardText>
-        {process}
-        {temperature}
-        {pressure}
-        {pipe_size}
-        {pipe_additional_information}
-        {additional_information}
-      </CardText>
+      <div className='card-info'>
+        <CardText>
+          <span>Process: </span>{process}
+        </CardText>
+
+        <CardText>
+          <span>Temperature: </span>{temperature}
+        </CardText>
+
+        <CardText>
+          <span>Pressure: </span>{pressure}
+        </CardText>
+
+        <CardText>
+          <span>Pipe Size: </span>{pipe_size}
+        </CardText>
+
+        <div className='double-column'>
+          <CardText>
+            <span>Pipe Additional Information: </span>{pipe_additional_information}
+          </CardText>
+        </div>
+
+        <div className='double-column'>
+          <CardText>
+            <span>Additional Information: </span>{additional_information}
+          </CardText>
+        </div>
+      </div>
     </Card>
   );
 }

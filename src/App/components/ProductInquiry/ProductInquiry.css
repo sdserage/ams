@@ -11,4 +11,18 @@
   display: none; }
 
 .item-header {
-  padding: 16px; }
+  padding: 16px;
+  color: #931621; }
+
+.card-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 50px 50px;
+  grid-auto-rows: 1fr;
+  margin-bottom: 40px; }
+  .card-info span {
+    font-size: 14px;
+    font-weight: bold; }
+
+.double-column {
+  grid-column: 1/3; }
