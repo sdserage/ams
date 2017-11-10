@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import './ProductInquiry.css';
 /* Components */
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from 'material-ui/Card';
 
 const ACTUATOR = 'Actuator'
     , DUST_COLLECTOR = 'Dust Collector'
@@ -22,15 +29,35 @@ function Actuator(props){
   return (
     <Card>
       <h2 className='item-header'>{item_type}</h2>
-      <CardText>
-        {valve_size}
-        {valve_additional_information}
-        {torque}
-        {return_type}
-        {stem_dimensions}
-        {stem_additional_information}
-        {additional_information}
-      </CardText>
+      <div className='card-info'>
+        <CardText>
+          Valve Size: {valve_size}
+        </CardText>
+
+        <CardText>
+          Valve Additional Information: {valve_additional_information}
+        </CardText>
+
+        <CardText>
+          Torque: {torque}
+        </CardText>
+
+        <CardText>
+          Return Type: {return_type}
+        </CardText>
+
+        <CardText>
+          Stem Dimensions: {stem_dimensions}
+        </CardText>
+
+        <CardText>
+          Stem Additional Info: {stem_additional_information}
+        </CardText>
+
+        <CardText>
+          Additional Info: {additional_information}
+        </CardText>
+      </div>
     </Card>
   );
 }
