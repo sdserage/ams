@@ -26,3 +26,16 @@
 
 .double-column {
   grid-column: 1/3; }
+
+.card-heading {
+  display: flex;
+  justify-content: space-between; }
+
+.card-icons {
+  margin: 10px;
+  color: #545E75;
+  cursor: pointer; }
+
+.card-icon-container {
+  display: flex;
+  align-items: flex-end; }

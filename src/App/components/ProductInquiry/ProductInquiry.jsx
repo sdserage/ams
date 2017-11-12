@@ -10,6 +10,7 @@ import {
   CardTitle,
   CardText
 } from 'material-ui/Card';
+import FontAwesome from 'react-fontawesome';
 
 const ACTUATOR = 'Actuator'
     , DUST_COLLECTOR = 'Dust Collector'
@@ -27,33 +28,44 @@ function Actuator(props){
     stem_additional_information,
     additional_information
   } = props.item;
+  const {deleteItem, index} = props;
   return (
     <Card>
-      <h2 className='item-header'>{item_type}</h2>
+      <div className='card-heading'>
+        <h2 className='item-header'>{item_type}</h2>
+        <div className='tool-icons'>
+          <FontAwesome name='pencil-square-o' className='card-icons'/>
+          <FontAwesome name='trash-o' className='card-icons' onClick={()=> deleteItem(index)}/>
+        </div>
+      </div>
       <div className='card-info'>
         <CardText>
-          <span>Valve Size: </span>{valve_size}
-        </CardText>
-
-        <CardText>
-          <span>Valve Additional Information: </span>{valve_additional_information}
+          <span>Valve Size: </span>NPS {valve_size} inch
         </CardText>
 
         <CardText>
           <span>Torque: </span>{torque}
         </CardText>
 
-        <CardText>
-          <span>Return Type: </span>{return_type}
-        </CardText>
+        <div className='double-column'>
+          <CardText>
+            <span>Valve Additional Information: </span>{valve_additional_information}
+          </CardText>
+        </div>
 
         <CardText>
           <span>Stem Dimensions: </span>{stem_dimensions}
         </CardText>
 
         <CardText>
-          <span>Stem Additional Info: </span>{stem_additional_information}
+          <span>Return Type: </span>{return_type}
         </CardText>
+
+        <div className='double-column'>
+          <CardText>
+            <span>Stem Additional Info: </span>{stem_additional_information}
+          </CardText>
+        </div>
 
         <div className='double-column'>
           <CardText>
@@ -73,9 +85,16 @@ function DustCollector(props){
     temperature,
     additional_information
   } = props.item;
+  const {deleteItem, index} = props;
   return (
     <Card>
-      <h2 className='item-header'>{item_type}</h2>
+      <div className='card-heading'>
+        <h2 className='item-header'>{item_type}</h2>
+        <div className='tool-icons'>
+          <FontAwesome name='pencil-square-o' className='card-icons'/>
+          <FontAwesome name='trash-o' className='card-icons' onClick={()=> deleteItem(index)}/>
+        </div>
+      </div>
       <div className='card-info'>
         <div className='double-column'>
           <CardText>
@@ -111,9 +130,16 @@ function Instrumentation(props){
     pipe_additional_information,
     additional_information
   } = props.item;
+  const {deleteItem, index} = props;
   return (
     <Card>
-      <h2 className='item-header'>{item_type}</h2>
+      <div className='card-heading'>
+        <h2 className='item-header'>{item_type}</h2>
+        <div className='tool-icons'>
+          <FontAwesome name='pencil-square-o' className='card-icons'/>
+          <FontAwesome name='trash-o' className='card-icons' onClick={()=> deleteItem(index)}/>
+        </div>
+      </div>
       <div className='card-info'>
         <CardText>
           <span>Process: </span>{process}
@@ -124,11 +150,11 @@ function Instrumentation(props){
         </CardText>
 
         <CardText>
-          <span>Pressure: </span>{pressure}
+          <span>Pipe Size: </span>{pipe_size}
         </CardText>
 
         <CardText>
-          <span>Pipe Size: </span>{pipe_size}
+          <span>Pressure: </span>{pressure}
         </CardText>
 
         <div className='double-column'>
@@ -193,6 +219,7 @@ export default class ProductInquiry extends Component {
         }
       ] // Will be moved to the inquiries reducer
     };
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   startNewItem(){
@@ -202,18 +229,42 @@ export default class ProductInquiry extends Component {
     })
   };
 
+  deleteItem(index){
+    let itemListCopy = this.state.itemList.slice();
+    itemListCopy.splice(index, 1);
+    this.setState({
+      itemList: itemListCopy
+    })
+  }
+
   render(){
     const itemList = this.state.itemList;
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
         case ACTUATOR:
-          return <Actuator item={item} key={index}/>;
+          return <Actuator
+                  item={item}
+                  key={index}
+                  index={index}
+                  deleteItem={this.deleteItem}/>;
         case DUST_COLLECTOR:
-          return <DustCollector item={item} key={index}/>;
+          return <DustCollector
+                  item={item}
+                  key={index}
+                  index={index}
+                  deleteItem={this.deleteItem}/>;
         case INSTRUMENTATION:
-          return <Instrumentation item={item} key={index}/>;
+          return <Instrumentation
+                  item={item}
+                  key={index}
+                  index={index}
+                  deleteItem={this.deleteItem}/>;
         case VALVE:
-          return <Valve item={item} key={index}/>;
+          return <Valve
+                  item={item}
+                  key={index}
+                  index={index}
+                  deleteItem={this.deleteItem}/>;
         default:
           return null;
       }
