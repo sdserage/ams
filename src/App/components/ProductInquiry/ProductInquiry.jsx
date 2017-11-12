@@ -40,11 +40,11 @@ function Actuator(props){
       </div>
       <div className='card-info'>
         <CardText>
-          <span>Valve Size: </span>NPS {valve_size} inch
+          <span>Valve Size: </span>{valve_size} inch
         </CardText>
 
         <CardText>
-          <span>Torque: </span>{torque}
+          <span>Torque: </span>{torque} in-lb
         </CardText>
 
         <div className='double-column'>
@@ -86,6 +86,7 @@ function DustCollector(props){
     additional_information
   } = props.item;
   const {deleteItem, index} = props;
+  //N&middot;m</p> : <p>
   return (
     <Card>
       <div className='card-heading'>
@@ -98,16 +99,16 @@ function DustCollector(props){
       <div className='card-info'>
         <div className='double-column'>
           <CardText>
-            <span>Particulate Types: </span>{particulate_types}
+            <span>Particulate Types: </span>{particulate_types.join(', ').toLowerCase()}
           </CardText>
         </div>
 
         <CardText>
-          <span>Particulate Size: </span>{particulate_size}
+          <span>Particulate Size: </span>{particulate_size} &micro;m
         </CardText>
 
         <CardText>
-          <span>Temperature: </span>{temperature}
+          <span>Temperature: </span>{temperature} &#x2109;
         </CardText>
 
         <div className='double-column'>
@@ -146,15 +147,15 @@ function Instrumentation(props){
         </CardText>
 
         <CardText>
-          <span>Temperature: </span>{temperature}
+          <span>Temperature: </span>{temperature} &#x2109;
         </CardText>
 
         <CardText>
-          <span>Pipe Size: </span>{pipe_size}
+          <span>Pipe Size: </span>NPS {pipe_size} inch
         </CardText>
 
         <CardText>
-          <span>Pressure: </span>{pressure}
+          <span>Pressure: </span>{pressure} psi
         </CardText>
 
         <div className='double-column'>
