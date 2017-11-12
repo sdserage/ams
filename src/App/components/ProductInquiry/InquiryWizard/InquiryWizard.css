@@ -1,0 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+.inquiry-wizard {
+  z-index: 2;
+  position: fixed;
+  top: 10vh;
+  right: 10vw;
+  bottom: 10vh;
+  left: 10vw;
+  background: white; }

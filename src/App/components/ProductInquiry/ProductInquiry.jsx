@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ProductInquiry.css';
 /* Components */
+import InquiryWizard from './InquiryWizard/InquiryWizard';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import {
   Card,
@@ -180,7 +181,6 @@ export default class ProductInquiry extends Component {
   constructor(props){
     super(props);
     this.state = {
-      temporaryItem: null,
       itemCreatorOn: false,
       itemList: [
         {
@@ -225,7 +225,6 @@ export default class ProductInquiry extends Component {
 
   startNewItem(){
     this.setState({
-      temporaryItem: {},
       itemCreatorOn: true
     })
   };
@@ -275,6 +274,10 @@ export default class ProductInquiry extends Component {
         <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
           {displayItems}
         </section>
+        <div style={{display: 'none'}}>
+        <div className='inquiry-wizard-wrapper'></div>
+        <InquiryWizard/>
+        </div>
       </main>
     )
   }
