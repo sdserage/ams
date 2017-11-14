@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './ProductInquiry.css';
+import {White} from 'material-ui/styles/colors';
 /* Components */
 import InquiryWizard from './InquiryWizard/InquiryWizard';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import {
   Card,
   CardActions,
@@ -17,6 +18,23 @@ const ACTUATOR = 'Actuator'
     , DUST_COLLECTOR = 'Dust Collector'
     , INSTRUMENTATION = 'Instrumentation'
     , VALVE = 'Valve';
+
+function ControlButtons(props){
+  const {
+    submitItems,
+    addNewItem
+  } = props;
+  return (
+    <div  className='control-buttons'>
+      <RaisedButton secondary={true} onClick={()=> addNewItem()}>
+        <span>+ Add</span>
+      </RaisedButton>
+      <RaisedButton primary={true} onClick={()=> submitItems()}>
+        Submit
+      </RaisedButton>
+    </div>
+  );
+}
 
 function Actuator(props){
   const {
@@ -221,13 +239,19 @@ export default class ProductInquiry extends Component {
       ] // Will be moved to the inquiries reducer
     };
     this.deleteItem = this.deleteItem.bind(this);
+    this.addNewItem = this.addNewItem.bind(this);
+    this.submitItems = this.submitItems.bind(this);
   }
 
-  startNewItem(){
+  addNewItem(){
     this.setState({
       itemCreatorOn: true
     })
   };
+
+  submitItems(){
+
+  }
 
   deleteItem(index){
     let itemListCopy = this.state.itemList.slice();
@@ -238,7 +262,7 @@ export default class ProductInquiry extends Component {
   }
 
   render(){
-    const itemList = this.state.itemList;
+    const {itemList, itemCreatorOn} = this.state;
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
         case ACTUATOR:
@@ -274,10 +298,14 @@ export default class ProductInquiry extends Component {
         <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
           {displayItems}
         </section>
-        <div style={{display: 'none'}}>
-        <div className='inquiry-wizard-wrapper'></div>
-        <InquiryWizard/>
-        </div>
+        <ControlButtons addNewItem = {this.addNewItem} submitItems = {this.submitItems}/>
+        {
+          itemCreatorOn &&
+            <div>
+              <div className='inquiry-wizard-wrapper'></div>
+              <InquiryWizard/>
+            </div>
+        }
       </main>
     )
   }
