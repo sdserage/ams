@@ -26,11 +26,9 @@ function ControlButtons(props){
   } = props;
   return (
     <div  className='control-buttons'>
-      <RaisedButton secondary={true} onClick={()=> addNewItem()}>
-        <span>+ Add</span>
-      </RaisedButton>
+      <RaisedButton label='+ Add' secondary={true} onClick={()=> addNewItem()}/>
       <RaisedButton primary={true} onClick={()=> submitItems()}>
-        Submit
+        SUBMIT
       </RaisedButton>
     </div>
   );
@@ -241,6 +239,7 @@ export default class ProductInquiry extends Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.addNewItem = this.addNewItem.bind(this);
     this.submitItems = this.submitItems.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   addNewItem(){
@@ -248,6 +247,12 @@ export default class ProductInquiry extends Component {
       itemCreatorOn: true
     })
   };
+
+  cancel(){
+    this.setState({
+      itemCreatorOn: false
+    })
+  }
 
   submitItems(){
 
@@ -300,10 +305,12 @@ export default class ProductInquiry extends Component {
         </section>
         <ControlButtons addNewItem = {this.addNewItem} submitItems = {this.submitItems}/>
         {
-          itemCreatorOn &&
+          /*itemCreatorOn*/ true &&
             <div>
               <div className='inquiry-wizard-wrapper'></div>
-              <InquiryWizard/>
+
+              <InquiryWizard cancel={this.cancel}/>
+
             </div>
         }
       </main>
