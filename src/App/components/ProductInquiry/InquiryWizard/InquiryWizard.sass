@@ -1,6 +1,7 @@
 @import "../../../../partials/themeController"
 
 .inquiry-wizard
+  padding: 10px
   z-index: 2
   position: fixed
   top: 10vh
@@ -8,3 +9,12 @@
   bottom: 10vh
   left: 10vw
   background: $lighterColor
+
+.wizard-grid
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr
+
+.wizard-cancel
+  padding: 0
+  grid-column: 3/4
+  justify-self: end
