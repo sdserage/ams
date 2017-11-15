@@ -11,9 +11,17 @@
 
 .wizard-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr; }
+  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; }
 
 .wizard-cancel {
+  display: grid;
   padding: 0;
-  grid-column: 3/4;
-  justify-self: end; }
+  justify-self: end;
+  grid-column: 10; }
+
+.root-title {
+  text-align: center;
+  grid-column: 3/9;
+  grid-row: 1;
+  align-self: start;
+  padding: 0; }

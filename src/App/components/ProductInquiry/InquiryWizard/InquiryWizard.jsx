@@ -21,14 +21,19 @@ export default class InquiryWizard extends Component{
     };
   }
 
+  componentDidMount(){
+    this.setState({
+      item: {}
+    });
+  }
+
   render(){
     const {cancel} = this.props;
     return(
       <Card className='inquiry-wizard' zDepth={3}>
         <div className='wizard-grid'>
-          <div className='wizard-cancel'>
-            <RaisedButton secondary={true} label='Cancel' fullWidth={false} onClick={cancel}/>
-          </div>
+          <RaisedButton className='wizard-cancel' secondary={true} label='Cancel' fullWidth={false} onClick={cancel}/>
+          <h2 className='root-title'>What type of product are you looking for?</h2>
         </div>
       </Card>
     );
