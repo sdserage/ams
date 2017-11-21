@@ -11,7 +11,8 @@
 
 .wizard-grid {
   display: grid;
-  grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%; }
+  grid-template-columns: repeat(10, 10%);
+  grid-template-rows: repeat(5, 30px); }
 
 .wizard-cancel {
   display: grid;
@@ -25,3 +26,12 @@
   grid-row: 1;
   align-self: start;
   padding: 0; }
+
+.back-next {
+  display: flex;
+  grid-row: 8;
+  grid-column: 5/7;
+  justify-content: center; }
+
+.next-button, .back-button {
+  margin: 5px; }
