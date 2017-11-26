@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './InquiryWizard.css';
 /* Components */
+import NumberInput from 'material-ui-number-input';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
@@ -15,13 +16,41 @@ import {
 } from 'material-ui/Card';
 import FontAwesome from 'react-fontawesome';
 
+function SelectItemType(props){
+  const {item, updateItemType} = props;
+  return (
+    <SelectField
+      hintText="Select..."
+      value={item.item_type}
+      onChange={updateItemType}
+    >
+      <MenuItem value='Actuator' primaryText='Actuator'/>
+      <MenuItem value='Dust Collector' primaryText='Dust Collector'/>
+      <MenuItem value='Instrumentation' primaryText='Instrumentation'/>
+      <MenuItem value='Valve' primaryText='Valve'/>
+    </SelectField>
+  )
+}
+
+function SetValveSize(props){
+  const {item, updateValveSize} = props;
+  return (
+    <NumberInput
+    />
+  )
+}
+
 export default class InquiryWizard extends Component{
   constructor(props){
     super(props);
     this.state = {
       item: {item_type: ''},
-      path: ''
+      path: [],
+      location: 'root'
     };
+    this.advanceLocation = this.advanceLocation.bind(this);
+    this.updateItemType = this.updateItemType.bind(this);
+    this.updateValveSize = this.updateValveSize.bind(this);
   }
 
   componentDidMount(){
@@ -30,35 +59,98 @@ export default class InquiryWizard extends Component{
     });
   }
 
+  advanceLocation(){
+    const {path, location} = this.state;
+    if(location === 'root'){
+      this.setState({
+        location: path[0]
+      });
+    } else {
+      let currentIndex = path.indexOf(location);
+      this.setState({
+        location: path[currentIndex + 1]
+      });
+    }
+  }
   //
-  handleChange = (event, index, value) => this.setState({item: {item_type: value}});
-  //
+  updateItemType(event, index, value){
+    let item = Object.assign({}, this.state.item);
+    item.item_type = value;
+    switch(value){
+      case 'Actuator':
+        this.setState({
+          item,
+          path: [
+            'valve_size',
+            'torque',
+            'return_type',
+            'stem_dimensions',
+            'additional_information'
+          ]
+        });
+        break;
+      case 'Dust Collector':
+        this.setState({
+          item,
+          path: [
+            'particulate_types',
+            'temperature',
+            'additional_information'
+          ]
+        });
+        break;
+      case 'Instrumentation': // Fallthrough
+      case 'Valve':
+        this.setState({
+          item,
+          path: [
+            'process',
+            'temperature',
+            'pressure',
+            'pipe_size',
+            'additional_information'
+          ]
+        });
+        break;
+    }
+    this.setState({
+      item: {item_type: value}
+    });
+  }
+
+  updateValveSize(event, index, value) {
+
+  }
 
   render(){
     const {cancel} = this.props;
-    const {item, path} = this.state;
+    const {item, path, location} = this.state;
+    let page;
+    switch (location) {
+      case 'root':
+        page = <SelectItemType item={item} updateItemType={this.updateItemType}/>
+        break;
+      case 'valve_size':
+        page = <SetValveSize item={item} updateValveSize={this.updateValveSize}/>
+        break;
+      default:
+        page = null;
+    }
     return(
-      <Card className='inquiry-wizard' zDepth={3}>
+      <Card className='inquiry-wizard' zDepth={4}>
         <div className='wizard-grid'>
           <RaisedButton className='wizard-cancel' secondary={true} label='Cancel' fullWidth={false} onClick={cancel}/>
           <h2 className='root-title'>What type of product are you looking for?</h2>
-          <SelectField
-            hintText="Select..."
-            value={item.item_type}
-            onChange={this.handleChange}
-          >
-            <MenuItem value='Actuator' primaryText='Actuator'/>
-            <MenuItem value='Dust Collector' primaryText='Dust Collector'/>
-            <MenuItem value='Instrumentation' primaryText='Instrumentation'/>
-            <MenuItem value='Valve' primaryText='Valve'/>
-          </SelectField>
-          <section className='back-next'>
+
+          {page}
+
+          <section className='previous-next'>
             {
-              path &&
+              false &&
               <RaisedButton
-                className='back-button'
+                className='previous-button'
                 primary={true}
-                label='back'
+                label='previous'
               />
             }
             <RaisedButton
@@ -66,6 +158,7 @@ export default class InquiryWizard extends Component{
               primary={true}
               label='next'
               disabled={item.item_type ? false : true}
+              onClick={this.advanceLocation}
             />
           </section>
         </div>
