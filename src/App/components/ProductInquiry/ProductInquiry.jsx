@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './ProductInquiry.css';
 import {White} from 'material-ui/styles/colors';
+import {connect} from 'react-redux';
+
 /* Components */
 import InquiryWizard from './InquiryWizard/InquiryWizard';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -193,7 +195,7 @@ function Instrumentation(props){
 
 const Valve = Instrumentation;
 
-export default class ProductInquiry extends Component {
+class ProductInquiry extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -317,3 +319,11 @@ export default class ProductInquiry extends Component {
     )
   }
 };
+
+function mapStateToProps(state){
+  return {
+    itemList: state.inquiries.itemList
+  }
+}
+
+export default connect(mapStateToProps, {})(ProductInquiry);
