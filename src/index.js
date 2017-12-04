@@ -5,8 +5,8 @@ import App from './App/App';
 import {unregister} from './registerServiceWorker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
+import {Provider} from 'react-redux';
+import store from './store';
 
 const lighterColor = 'white'
     , lightColor = '#30BCED'
@@ -27,10 +27,11 @@ const lighterColor = 'white'
     };
 
 ReactDOM.render(
-
-  <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
-    <App />
-  </MuiThemeProvider>
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+      <App />
+    </MuiThemeProvider>
+  </Provider>
 
 
   , document.getElementById('root'));
