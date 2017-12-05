@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import './InquiryWizard.css';
 /* Components */
 import NumberInput from 'material-ui-number-input';
@@ -6,6 +7,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import SelectItemType from './functionalComponents/SelectItemType';
 import {
   Card,
   CardActions,
@@ -16,21 +18,7 @@ import {
 } from 'material-ui/Card';
 import FontAwesome from 'react-fontawesome';
 
-function SelectItemType(props){
-  const {item, updateItemType} = props;
-  return (
-    <SelectField
-      hintText="Select..."
-      value={item.item_type}
-      onChange={updateItemType}
-    >
-      <MenuItem value='Actuator' primaryText='Actuator'/>
-      <MenuItem value='Dust Collector' primaryText='Dust Collector'/>
-      <MenuItem value='Instrumentation' primaryText='Instrumentation'/>
-      <MenuItem value='Valve' primaryText='Valve'/>
-    </SelectField>
-  )
-}
+
 
 function SetValveSize(props){
   const {item, updateValveSize} = props;
@@ -40,7 +28,7 @@ function SetValveSize(props){
   )
 }
 
-export default class InquiryWizard extends Component{
+class InquiryWizard extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -166,3 +154,11 @@ export default class InquiryWizard extends Component{
     );
   }
 };
+
+function mapStateToProps(state){
+  return {
+
+  };
+};
+
+export default connect(mapStateToProps, {})(InquiryWizard);
