@@ -1,8 +1,10 @@
 import React from 'react';
+/* Components */
 import {Route, Switch} from 'react-router-dom';
+// Routes
 import SetItemType from './functionalComponents/SetItemType';
+import SetValveSize from './functionalComponents/SetValveSize';
 
-// <Route path='/productinquiry/valve-size'   render={()=><SetValveSize/>}/>
 // <Route path='/productinquiry/torque'   render={()=><SetTorqueValue/>}/>
 // <Route path='/productinquiry/return'   render={()=><SetReturnType/>}/>
 // <Route path='/productinquiry/stem'   render={()=><SetStemType/>}/>
@@ -16,5 +18,6 @@ import SetItemType from './functionalComponents/SetItemType';
 export default (
   <Switch>
     <Route exact path='/productinquiry' component={SetItemType}/>
+    <Route path='/productinquiry/valve-size' component={SetValveSize}/>
   </Switch>
 );

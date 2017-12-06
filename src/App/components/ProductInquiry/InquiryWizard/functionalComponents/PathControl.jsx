@@ -6,26 +6,26 @@ import {Link} from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 
 function PathControl(props){
-  const {next, currentLocation, updatePath, conditionMet} = props;
+  const {next, previous, currentLocation, updatePath, conditionMet} = props;
   return (
     <section className='previous-next'>
       {
-        false &&
+        currentLocation &&
+        <Link to={previous}>
         <RaisedButton
           className='previous-button'
           primary={true}
           label='previous'
         />
+        </Link>
       }
-      <Link to={`productinquiry${next}`}>
+      <Link to={`productinquiry${next?next:''}`}>
         <RaisedButton
           className='next-button'
           primary={true}
           label='next'
           disabled={conditionMet ? false : true}
-        >
-
-        </RaisedButton>
+        />
       </Link>
     </section>
   );
