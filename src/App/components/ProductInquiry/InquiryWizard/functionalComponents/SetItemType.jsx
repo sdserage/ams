@@ -4,7 +4,6 @@ import {updateItemType} from '../../../../../ducks/wizard';
 /* Components */
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import {Link} from 'react-router-dom';
 import PathControl from './PathControl';
 
 function SetItemType(props){
