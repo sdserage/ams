@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-//import {} from '../../../../../ducks/wizard';
+import {updateValveSize} from '../../../../../ducks/wizard';
 /* Components */
 import NumberInput from 'material-ui-number-input';
 import PathControl from './PathControl';
 
-function getNext(path='', currentLocation){
+function getNext(path=[''], currentLocation){
   let NextIndex = path.indexOf(currentLocation) + 1;
   if(NextIndex >= path.length){
     NextIndex--;
@@ -13,22 +13,37 @@ function getNext(path='', currentLocation){
   return path[NextIndex];
 }
 
+function isValidNumber(val){
+  return !isNaN(val);
+}
+
 function SetValveSize(props){
-  const {path} = props;
+  const {path, match, updateValveSize, valve_size} = props;
   return (
     <div>
       <NumberInput
+        id='set-valve-size'
+        onChange={updateValveSize}
+        min={0}
+        defaultValue={valve_size}
+      />inch
+      <PathControl
+        currentLocation={match.path}
+        previous={''}
+        next={'/torque'}
+        conditionMet={isValidNumber(valve_size)}
       />
-      <PathControl/>
     </div>
   );
 }
 
 function mapStateToProps(state){
-  const {path} = state.wizard;
+  const {path, item} = state.wizard;
+  const {valve_size} = item;
   return {
-    path
+    path,
+    valve_size
   };
 }
 
-export default connect(mapStateToProps,{})(SetValveSize);
+export default connect(mapStateToProps, {updateValveSize})(SetValveSize);
