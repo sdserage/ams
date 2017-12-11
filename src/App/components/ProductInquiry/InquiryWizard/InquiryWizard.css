@@ -27,11 +27,11 @@
   align-self: start;
   padding: 0; }
 
-.back-next {
+.previous-next {
   display: flex;
   grid-row: 8;
   grid-column: 5/7;
   justify-content: center; }
 
-.next-button, .back-button {
+.next-button, .previous-button {
   margin: 5px; }
