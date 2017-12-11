@@ -11,7 +11,7 @@ function PathControl(props){
     <section className='previous-next'>
       {
         currentLocation &&
-        <Link to={previous}>
+        <Link to={`/productinquiry${previous?previous:''}`}>
         <RaisedButton
           className='previous-button'
           primary={true}
@@ -19,7 +19,7 @@ function PathControl(props){
         />
         </Link>
       }
-      <Link to={`productinquiry${next?next:''}`}>
+      <Link to={`/productinquiry${next?next:''}`}>
         <RaisedButton
           className='next-button'
           primary={true}
