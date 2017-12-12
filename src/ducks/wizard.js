@@ -20,6 +20,20 @@ const _FULFILLED                          = 'FULFILLED'
       path: ['','']
     };
 
+export function updateStemAdditionalInformation(event, stem_additional_information){
+      return {
+        type: UPDATE_STEM_ADDITIONAL_INFORMATION,
+        payload: stem_additional_information
+      }
+    }
+
+export function updateStemDimensions(event, index, stem_dimensions){
+  return {
+    type: UPDATE_STEM_DIMENSIONS,
+    payload: stem_dimensions
+  }
+}
+
 export function updateReturnType(event, index, return_type){
   return {
     type: UPDATE_RETURN_TYPE,
@@ -140,6 +154,12 @@ export default function inquiries(state = initialState, action){
     case UPDATE_RETURN_TYPE:
       const item_updateReturnType = combineToNewObject(state.item, {return_type: payload});
       return combineToNewObject(state, {item: item_updateReturnType});
+    case UPDATE_STEM_DIMENSIONS:
+      const item_updateStemDimensions = combineToNewObject(state.item, {stem_dimensions: payload});
+      return combineToNewObject(state, {item: item_updateStemDimensions});
+    case UPDATE_STEM_ADDITIONAL_INFORMATION:
+      const item_updateStemAdditionalInformation = combineToNewObject(state.item, {stem_additional_information: payload});
+      return combineToNewObject(state, {item: item_updateStemAdditionalInformation});
     default:
       return state;
   }
