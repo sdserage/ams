@@ -4,10 +4,10 @@ import {Route, Switch} from 'react-router-dom';
 // Routes
 import SetItemType from './functionalComponents/SetItemType';
 import SetValveSize from './functionalComponents/SetValveSize';
+import SetTorqueValue from './functionalComponents/SetTorqueValue';
+import SetReturnType from './functionalComponents/SetReturnType';
+import SetStemDimensions from './functionalComponents/SetStemDimensions';
 
-// <Route path='/productinquiry/torque'   render={()=><SetTorqueValue/>}/>
-// <Route path='/productinquiry/return'   render={()=><SetReturnType/>}/>
-// <Route path='/productinquiry/stem'   render={()=><SetStemType/>}/>
 // <Route path='/productinquiry/particulates'   render={()=><SetParticulates/>}/>
 // <Route path='/productinquiry/temperature'   render={()=><SetTemperature/>}/>
 // <Route path='/productinquiry/process'   render={()=><SetProcess/>}/>
@@ -17,7 +17,10 @@ import SetValveSize from './functionalComponents/SetValveSize';
 
 export default (
   <Switch>
-    <Route exact path='/productinquiry' component={SetItemType}/>
-    <Route path='/productinquiry/valve-size' component={SetValveSize}/>
+    <Route exact path='/productinquiry'       component={SetItemType}/>
+    <Route path='/productinquiry/valve-size'  component={SetValveSize}/>
+    <Route path='/productinquiry/torque'      component={SetTorqueValue}/>
+    <Route path='/productinquiry/return'      component={SetReturnType}/>
+    <Route path='/productinquiry/stem'        component={SetStemDimensions}/>
   </Switch>
 );
