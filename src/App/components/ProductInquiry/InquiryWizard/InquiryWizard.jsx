@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import './InquiryWizard.css';
+import {resetWizard} from '../../../../ducks/wizard';
 /* Components */
 import RaisedButton from 'material-ui/RaisedButton';
 import {BrowserRouter as Router} from 'react-router-dom';
@@ -21,12 +22,11 @@ class InquiryWizard extends Component{
   }
 
   render(){
-    const {cancel} = this.props;
-
+    const {cancel, resetWizard} = this.props;
     return(
       <Card className='inquiry-wizard' zDepth={4}>
         <div className='wizard-grid'>
-          <RaisedButton className='wizard-cancel' secondary={true} label='Cancel' fullWidth={false} onClick={cancel}/>
+          <RaisedButton className='wizard-cancel' secondary={true} label='Cancel' fullWidth={false} onClick={()=>{cancel(); resetWizard()}}/>
           <Router>
             {router}
           </Router>
@@ -42,4 +42,4 @@ function mapStateToProps(state){
   };
 };
 
-export default connect(mapStateToProps, {})(InquiryWizard);
+export default connect(mapStateToProps, {resetWizard})(InquiryWizard);

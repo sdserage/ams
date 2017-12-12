@@ -1,4 +1,5 @@
 const _FULFILLED                          = 'FULFILLED'
+    , RESET_WIZARD                        = 'RESET_WIZARD'
     , UPDATE_PATH                         = 'UPDATE_PATH'
     , UPDATE_ITEM_TYPE                    = 'UPDATE_ITEM_TYPE'
     , UPDATE_VALVE_SIZE                   = 'UPDATE_VALVE_SIZE'
@@ -19,6 +20,37 @@ const _FULFILLED                          = 'FULFILLED'
       item: {item_type: ''},
       path: ['','']
     };
+
+export function resetWizard(){
+  return {
+    type: RESET_WIZARD,
+    payload: {
+      item: {item_type: ''},
+      path: ['','']
+    }
+  }
+}
+
+export function updateAdditionalInformation(event, additional_information){
+  return {
+    type: UPDATE_ADDITIONAL_INFORMATION,
+    payload: additional_information
+  }
+}
+
+export function updateStemAdditionalInformation(event, stem_additional_information){
+      return {
+        type: UPDATE_STEM_ADDITIONAL_INFORMATION,
+        payload: stem_additional_information
+      }
+    }
+
+export function updateStemDimensions(event, index, stem_dimensions){
+  return {
+    type: UPDATE_STEM_DIMENSIONS,
+    payload: stem_dimensions
+  }
+}
 
 export function updateReturnType(event, index, return_type){
   return {
@@ -140,6 +172,17 @@ export default function inquiries(state = initialState, action){
     case UPDATE_RETURN_TYPE:
       const item_updateReturnType = combineToNewObject(state.item, {return_type: payload});
       return combineToNewObject(state, {item: item_updateReturnType});
+    case UPDATE_STEM_DIMENSIONS:
+      const item_updateStemDimensions = combineToNewObject(state.item, {stem_dimensions: payload});
+      return combineToNewObject(state, {item: item_updateStemDimensions});
+    case UPDATE_STEM_ADDITIONAL_INFORMATION:
+      const item_updateStemAdditionalInformation = combineToNewObject(state.item, {stem_additional_information: payload});
+      return combineToNewObject(state, {item: item_updateStemAdditionalInformation});
+    case UPDATE_ADDITIONAL_INFORMATION:
+      const item_updateAdditionalInformation = combineToNewObject(state.item, {additional_information: payload});
+      return combineToNewObject(state, {item: item_updateAdditionalInformation});
+    case RESET_WIZARD:
+      return combineToNewObject(state, payload);
     default:
       return state;
   }
