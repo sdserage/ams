@@ -4,7 +4,7 @@ const _FULFILLED   = 'FULFILLED'
     , ACTIVATE     = 'ACTIVATE'
     , DEACTIVATE   = 'DEACTIVATE'
     , initialState = {
-      itemCreatorOn: false,//true,
+      itemCreatorOn: true, //false,
       itemList: [
         {
           item_type: 'Actuator',
