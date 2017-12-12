@@ -1,11 +1,30 @@
-const _FULFILLED = 'FULFILLED'
-    , UPDATE_PATH = 'UPDATE_PATH'
-    , UPDATE_ITEM_TYPE = 'UPDATE_ITEM_TYPE'
-    , UPDATE_VALVE_SIZE = 'UPDATE_VALVE_SIZE'
+const _FULFILLED                          = 'FULFILLED'
+    , UPDATE_PATH                         = 'UPDATE_PATH'
+    , UPDATE_ITEM_TYPE                    = 'UPDATE_ITEM_TYPE'
+    , UPDATE_VALVE_SIZE                   = 'UPDATE_VALVE_SIZE'
+    , UPDATE_TORQUE_VALUE                 = 'UPDATE_TORQUE_VALUE'
+    , UPDATE_VALVE_ADDITIONAL_INFORMATION = 'UPDATE_VALVE_ADDITIONAL_INFORMATION'
     , initialState = {
       item: {item_type: ''},
       path: ['','']
     };
+
+export function updateValveAdditionalInformation(event, valve_additional_information){
+  return {
+    type: UPDATE_VALVE_ADDITIONAL_INFORMATION,
+    payload: valve_additional_information
+  }
+}
+
+export function updateTorqueValue(event, torque){
+  if(torque === ''){
+    torque = NaN;
+  }
+  return {
+    type: UPDATE_TORQUE_VALUE,
+    payload: torque
+  }
+}
 
 export function updatePath(newPath){
   return {
@@ -84,6 +103,12 @@ export default function inquiries(state = initialState, action){
     case UPDATE_VALVE_SIZE:
       const item_updateValveSize = combineToNewObject(state.item, {valve_size: payload});
       return combineToNewObject(state, {item: item_updateValveSize});
+    case UPDATE_TORQUE_VALUE:
+      const item_updateTorqueValue = combineToNewObject(state.item, {torque: payload});
+      return combineToNewObject(state, {item: item_updateTorqueValue});
+    case UPDATE_VALVE_ADDITIONAL_INFORMATION:
+      const item_updateValveAdditionalInformation = combineToNewObject(state.item, {valve_additional_information: payload});
+      return combineToNewObject(state, {item: item_updateValveAdditionalInformation});
     default:
       return state;
   }

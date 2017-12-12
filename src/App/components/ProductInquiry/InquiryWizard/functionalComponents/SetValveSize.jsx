@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateValveSize} from '../../../../../ducks/wizard';
+import isValidNumber from '../../../../../assets/functions/isValidNumber';
 /* Components */
 import NumberInput from 'material-ui-number-input';
 import PathControl from './PathControl';
@@ -13,9 +14,7 @@ function getNext(path=[''], currentLocation){
   return path[NextIndex];
 }
 
-function isValidNumber(val){
-  return !isNaN(val);
-}
+
 
 function SetValveSize(props){
   const {path, match, updateValveSize, valve_size} = props;
