@@ -14,7 +14,8 @@ function PathControl(props){
     currentLocation,
     updatePath,
     conditionMet,
-    deactivate
+    deactivate,
+    addItem
   } = props;
   const submit = currentLocation && currentLocation === '/productinquiry/additional-info' ? true : false;
   return (
@@ -59,4 +60,4 @@ function mapStateToProps(state){
   };
 };
 
-export default connect(mapStateToProps, {deactivate})(PathControl);
+export default connect(mapStateToProps, {deactivate, addItem})(PathControl);
