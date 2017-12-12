@@ -1,11 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateAdditionalInformation} from '../../../../../ducks/wizard';
+import {rubyRed} from '../../../../../assets/globalConstants/colors';
 /* Components */
 import TextField from 'material-ui/TextField';
 import PathControl from './PathControl';
-
-const rubyRed = '#931621';
 
 function SetAdditionalInformation(props){
   const {
