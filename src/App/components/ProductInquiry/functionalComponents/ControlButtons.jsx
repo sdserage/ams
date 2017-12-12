@@ -1,6 +1,7 @@
 import React from 'react';
 /* Components */
 import RaisedButton from 'material-ui/RaisedButton';
+import {Link} from 'react-router-dom';
 
 export default function ControlButtons(props){
   const {
@@ -9,10 +10,10 @@ export default function ControlButtons(props){
   } = props;
   return (
     <div  className='control-buttons'>
-      <RaisedButton label='+ Add' secondary={true} onClick={()=> addNewItem()}/>
-      <RaisedButton primary={true} onClick={()=> submitItems()}>
-        SUBMIT
-      </RaisedButton>
+      <Link to='/productinquiry'>
+        <RaisedButton label='+ Add' secondary={true} onClick={()=> addNewItem()}/>
+      </Link>
+      <RaisedButton primary={true} label='Submit' onClick={()=> submitItems()}/>
     </div>
   );
 }

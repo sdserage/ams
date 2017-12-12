@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ProductInquiry.css';
 import {White} from 'material-ui/styles/colors';
 import {connect} from 'react-redux';
+import {activate, deactivate} from '../../../ducks/inquiries';
 /* Components */
 import InquiryWizard from './InquiryWizard/InquiryWizard';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -19,33 +20,21 @@ const ACTUATOR = 'Actuator'
 class ProductInquiry extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      itemCreatorOn: false,
-    };
-    this.activate = this.activate.bind(this);
-    this.submitItems = this.submitItems.bind(this);
+    this.startNewItem = this.startNewItem.bind(this);
     this.cancel = this.cancel.bind(this);
   }
 
-  activate(){
-    this.setState({
-      itemCreatorOn: true
-    })
+  startNewItem(){
+    this.props.activate();
   };
 
   cancel(){
-    this.setState({
-      itemCreatorOn: false
-    })
-  }
+    this.props.deactivate();
 
-  submitItems(){
-
-  }
+  };
 
   render(){
-    const {itemCreatorOn} = this.state;
-    const {itemList, deleteItem} = this.props;
+    const {itemList, deleteItem, itemCreatorOn} = this.props;
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
         case ACTUATOR:
@@ -81,9 +70,9 @@ class ProductInquiry extends Component {
         <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
           {displayItems}
         </section>
-        <ControlButtons addNewItem = {this.activate} submitItems = {this.submitItems}/>
+        <ControlButtons addNewItem = {this.startNewItem} submitItems = {this.submitItems}/>
         {
-          /*itemCreatorOn*/ true &&
+          itemCreatorOn &&
             <div>
               <div className='inquiry-wizard-wrapper'></div>
 
@@ -97,9 +86,11 @@ class ProductInquiry extends Component {
 };
 
 function mapStateToProps(state){
+  const {itemList, itemCreatorOn} = state.inquiries;
   return {
-    itemList: state.inquiries.itemList
+    itemList,
+    itemCreatorOn
   }
 }
 
-export default connect(mapStateToProps, {})(ProductInquiry);
+export default connect(mapStateToProps, {activate, deactivate})(ProductInquiry);
