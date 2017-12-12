@@ -1,4 +1,5 @@
 const _FULFILLED                          = 'FULFILLED'
+    , RESET_WIZARD                        = 'RESET_WIZARD'
     , UPDATE_PATH                         = 'UPDATE_PATH'
     , UPDATE_ITEM_TYPE                    = 'UPDATE_ITEM_TYPE'
     , UPDATE_VALVE_SIZE                   = 'UPDATE_VALVE_SIZE'
@@ -19,6 +20,16 @@ const _FULFILLED                          = 'FULFILLED'
       item: {item_type: ''},
       path: ['','']
     };
+
+export function resetWizard(){
+  return {
+    type: RESET_WIZARD,
+    payload: {
+      item: {item_type: ''},
+      path: ['','']
+    }
+  }
+}
 
 export function updateAdditionalInformation(event, additional_information){
   return {
@@ -170,6 +181,8 @@ export default function inquiries(state = initialState, action){
     case UPDATE_ADDITIONAL_INFORMATION:
       const item_updateAdditionalInformation = combineToNewObject(state.item, {additional_information: payload});
       return combineToNewObject(state, {item: item_updateAdditionalInformation});
+    case RESET_WIZARD:
+      return combineToNewObject(state, payload);
     default:
       return state;
   }

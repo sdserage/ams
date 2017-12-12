@@ -3,6 +3,7 @@ import './ProductInquiry.css';
 import {White} from 'material-ui/styles/colors';
 import {connect} from 'react-redux';
 import {activate, deactivate} from '../../../ducks/inquiries';
+import {resetWizard} from '../../../ducks/wizard';
 /* Components */
 import InquiryWizard from './InquiryWizard/InquiryWizard';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -34,7 +35,7 @@ class ProductInquiry extends Component {
   };
 
   render(){
-    const {itemList, deleteItem, itemCreatorOn} = this.props;
+    const {itemList, deleteItem, itemCreatorOn, resetWizard} = this.props;
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
         case ACTUATOR:
@@ -70,7 +71,7 @@ class ProductInquiry extends Component {
         <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
           {displayItems}
         </section>
-        <ControlButtons addNewItem = {this.startNewItem} submitItems = {this.submitItems}/>
+        <ControlButtons addNewItem = {this.startNewItem} resetWizard={resetWizard} submitItems = {this.submitItems}/>
         {
           itemCreatorOn &&
             <div>
@@ -93,4 +94,4 @@ function mapStateToProps(state){
   }
 }
 
-export default connect(mapStateToProps, {activate, deactivate})(ProductInquiry);
+export default connect(mapStateToProps, {activate, deactivate, resetWizard})(ProductInquiry);

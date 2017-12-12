@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updatePath} from '../../../../../ducks/wizard';
+import {updatePath, resetWizard} from '../../../../../ducks/wizard';
 import {deactivate, addItem} from '../../../../../ducks/inquiries';
 /* Components */
 import {Link} from 'react-router-dom';
@@ -15,7 +15,8 @@ function PathControl(props){
     updatePath,
     conditionMet,
     deactivate,
-    addItem
+    addItem,
+    resetWizard
   } = props;
   const submit = currentLocation && currentLocation === '/productinquiry/additional-info' ? true : false;
   return (
@@ -40,6 +41,7 @@ function PathControl(props){
             ()=>{
               if(submit){
                 addItem(item);
+                resetWizard();
                 deactivate();
               }
             }
@@ -60,4 +62,4 @@ function mapStateToProps(state){
   };
 };
 
-export default connect(mapStateToProps, {deactivate, addItem})(PathControl);
+export default connect(mapStateToProps, {deactivate, addItem, resetWizard})(PathControl);
