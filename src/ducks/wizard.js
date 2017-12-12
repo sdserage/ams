@@ -4,10 +4,28 @@ const _FULFILLED                          = 'FULFILLED'
     , UPDATE_VALVE_SIZE                   = 'UPDATE_VALVE_SIZE'
     , UPDATE_TORQUE_VALUE                 = 'UPDATE_TORQUE_VALUE'
     , UPDATE_VALVE_ADDITIONAL_INFORMATION = 'UPDATE_VALVE_ADDITIONAL_INFORMATION'
+    , UPDATE_RETURN_TYPE                  = 'UPDATE_RETURN_TYPE'
+    , UPDATE_STEM_DIMENSIONS              = 'UPDATE_STEM_DIMENSIONS'
+    , UPDATE_STEM_ADDITIONAL_INFORMATION  = 'UPDATE_STEM_ADDITIONAL_INFORMATION'
+    , UPDATE_PARTICULATE_TYPES            = 'UPDATE_PARTICULATE_TYPES'
+    , UPDATE_PARTICULATE_SIZE             = 'UPDATE_PARTICULATE_SIZE'
+    , UPDATE_TEMPERATURE                  = 'UPDATE_TEMPERATURE'
+    , UPDATE_PROCESS                      = 'UPDATE_PROCESS'
+    , UPDATE_PRESSURE                     = 'UPDATE_PRESSURE'
+    , UPDATE_PIPE_SIZE                    = 'UPDATE_PIPE_SIZE'
+    , UPDATE_PIPE_ADDITIONAL_INFORMATION  = 'UPDATE_PIPE_ADDITIONAL_INFORMATION'
+    , UPDATE_ADDITIONAL_INFORMATION       = 'UPDATE_ADDITIONAL_INFORMATION'
     , initialState = {
       item: {item_type: ''},
       path: ['','']
     };
+
+export function updateReturnType(event, index, return_type){
+  return {
+    type: UPDATE_RETURN_TYPE,
+    payload: return_type
+  }
+}
 
 export function updateValveAdditionalInformation(event, valve_additional_information){
   return {
@@ -78,6 +96,16 @@ export function updateItemType(event, index, item_type){
   }
 }
 
+export function updatePipeSize(event, pipe_size){
+  if(pipe_size === ''){
+    pipe_size = NaN;
+  }
+  return {
+    type: UPDATE_VALVE_SIZE,
+    payload: +pipe_size
+  }
+}
+
 export function updateValveSize(event, valve_size){
   if(valve_size === ''){
     valve_size = NaN;
@@ -109,6 +137,9 @@ export default function inquiries(state = initialState, action){
     case UPDATE_VALVE_ADDITIONAL_INFORMATION:
       const item_updateValveAdditionalInformation = combineToNewObject(state.item, {valve_additional_information: payload});
       return combineToNewObject(state, {item: item_updateValveAdditionalInformation});
+    case UPDATE_RETURN_TYPE:
+      const item_updateReturnType = combineToNewObject(state.item, {return_type: payload});
+      return combineToNewObject(state, {item: item_updateReturnType});
     default:
       return state;
   }
