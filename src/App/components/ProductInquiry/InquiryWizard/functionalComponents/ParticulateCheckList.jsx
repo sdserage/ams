@@ -10,7 +10,8 @@ function CheckListItem(props){
     index,
     check,
     unCheck,
-    updateOtherValue
+    updateOtherValue,
+    otherValue
   } = props;
   const {checked, name} = particulate;
   return (
@@ -33,7 +34,8 @@ function CheckListItem(props){
       name === 'Other' &&
         <TextField
           id='other-value'
-          hintText={name}
+          hintText={otherValue ? '' : name}
+          value={otherValue}
           rowsMax={1}
           onChange={updateOtherValue}
         />
@@ -47,7 +49,8 @@ export default function ParticulateCheckList(props){
     particulateList,
     check,
     unCheck,
-    updateOtherValue
+    updateOtherValue,
+    otherValue
   } = props;
   const list = particulateList.map((particulate, index)=>{
     return (
@@ -58,6 +61,7 @@ export default function ParticulateCheckList(props){
         check={check}
         unCheck={unCheck}
         updateOtherValue={updateOtherValue}
+        otherValue={otherValue}
       />
     )
   });
