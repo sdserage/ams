@@ -31,6 +31,17 @@ export function resetWizard(){
   }
 }
 
+export function updateParticulateSize(event, particulate_size){
+  if(particulate_size === ''){
+    particulate_size = NaN;
+  }
+  return {
+    type: UPDATE_PARTICULATE_SIZE,
+    payload: particulate_size
+  }
+}
+
+
 export function updateParticulateTypes(particulate_types){
   return {
     type: UPDATE_PARTICULATE_TYPES,
@@ -188,6 +199,9 @@ export default function inquiries(state = initialState, action){
     case UPDATE_PARTICULATE_TYPES:
       const item_updateParticulateTypes = combineToNewObject(state.item, {particulate_types: payload});
       return combineToNewObject(state, {item: item_updateParticulateTypes});
+    case UPDATE_PARTICULATE_SIZE:
+      const item_updateParticulateSize = combineToNewObject(state.item, {particulate_size: payload});
+      return combineToNewObject(state, {item: item_updateParticulateSize});
     case UPDATE_ADDITIONAL_INFORMATION:
       const item_updateAdditionalInformation = combineToNewObject(state.item, {additional_information: payload});
       return combineToNewObject(state, {item: item_updateAdditionalInformation});

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {rubyRed} from '../../../../../assets/globalConstants/colors';
-import {updateParticulateTypes} from '../../../../../ducks/wizard';
+import {updateParticulateTypes, updateParticulateSize} from '../../../../../ducks/wizard';
+import isValidNumber from '../../../../../assets/functions/isValidNumber';
 /* Components */
 import PathControl from './PathControl';
 import ParticulateCheckList from './ParticulateCheckList';
@@ -96,11 +97,17 @@ class SetParticulates extends Component {
           unCheck={this.unCheck}
           updateOtherValue={this.updateOtherValue}
         />
+        <NumberInput
+          id='set-particulate-size'
+          onChange={updateParticulateSize}
+          min={0}
+          defaultValue={particulate_size}
+        />&micro;m
         <PathControl
           currentLocation={match.path}
           previous={''}
           next={'/temperature'}
-          conditionMet={true}
+          conditionMet={isValidNumber(particulate_size) && particulate_types.length > 0}
         />
       </div>
     );
@@ -117,4 +124,4 @@ function mapStateToProps(state){
   };
 }
 
-export default connect(mapStateToProps, {updateParticulateTypes})(SetParticulates);
+export default connect(mapStateToProps, {updateParticulateTypes, updateParticulateSize})(SetParticulates);
