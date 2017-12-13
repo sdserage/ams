@@ -31,6 +31,13 @@ export function resetWizard(){
   }
 }
 
+export function updateParticulateTypes(particulate_types){
+  return {
+    type: UPDATE_PARTICULATE_TYPES,
+    payload: particulate_types
+  }
+}
+
 export function updateAdditionalInformation(event, additional_information){
   return {
     type: UPDATE_ADDITIONAL_INFORMATION,
@@ -178,6 +185,9 @@ export default function inquiries(state = initialState, action){
     case UPDATE_STEM_ADDITIONAL_INFORMATION:
       const item_updateStemAdditionalInformation = combineToNewObject(state.item, {stem_additional_information: payload});
       return combineToNewObject(state, {item: item_updateStemAdditionalInformation});
+    case UPDATE_PARTICULATE_TYPES:
+      const item_updateParticulateTypes = combineToNewObject(state.item, {particulate_types: payload});
+      return combineToNewObject(state, {item: item_updateParticulateTypes});
     case UPDATE_ADDITIONAL_INFORMATION:
       const item_updateAdditionalInformation = combineToNewObject(state.item, {additional_information: payload});
       return combineToNewObject(state, {item: item_updateAdditionalInformation});

@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateStemDimensions, updateStemAdditionalInformation} from '../../../../../ducks/wizard';
+import {rubyRed} from '../../../../../assets/globalConstants/colors';
 /* Components */
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 import PathControl from './PathControl';
-
-const rubyRed = '#931621';
 
 function SetStemDimensions(props){
   const {
