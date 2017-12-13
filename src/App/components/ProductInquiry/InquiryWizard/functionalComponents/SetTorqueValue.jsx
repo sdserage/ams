@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {updateTorqueValue, updateValveAdditionalInformation} from '../../../../../ducks/wizard';
+import {rubyRed} from '../../../../../assets/globalConstants/colors';
 import isValidNumber from '../../../../../assets/functions/isValidNumber';
 /* Components */
 import NumberInput from 'material-ui-number-input';
 import TextField from 'material-ui/TextField';
 import PathControl from './PathControl';
-
-const rubyRed = '#931621';
 
 function SetTorqueValue(props){
   const {
