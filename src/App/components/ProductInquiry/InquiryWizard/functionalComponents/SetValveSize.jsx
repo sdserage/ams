@@ -6,16 +6,6 @@ import isValidNumber from '../../../../../assets/functions/isValidNumber';
 import NumberInput from 'material-ui-number-input';
 import PathControl from './PathControl';
 
-function getNext(path=[''], currentLocation){
-  let NextIndex = path.indexOf(currentLocation) + 1;
-  if(NextIndex >= path.length){
-    NextIndex--;
-  }
-  return path[NextIndex];
-}
-
-
-
 function SetValveSize(props){
   const {path, match, updateValveSize, valve_size} = props;
   return (
