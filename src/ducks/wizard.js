@@ -31,6 +31,51 @@ export function resetWizard(){
   }
 }
 
+export function updatePipeAdditionalInformation(event, pipe_additional_information){
+  return {
+    type: UPDATE_PIPE_ADDITIONAL_INFORMATION,
+    payload: pipe_additional_information
+  }
+}
+
+export function updateProcess(event, index, process){
+  return {
+    type: UPDATE_PROCESS,
+    payload: process
+  }
+}
+
+export function updatePressure(event, pressure){
+  if(pressure === ''){
+    pressure = NaN;
+  }
+  return {
+    type: UPDATE_PRESSURE,
+    payload: +pressure
+  }
+}
+
+export function updateTemperature(event, temperature){
+  if(temperature === ''){
+    temperature = NaN;
+  }
+  return {
+    type: UPDATE_TEMPERATURE,
+    payload: +temperature
+  }
+}
+
+export function updateParticulateSize(event, particulate_size){
+  if(particulate_size === ''){
+    particulate_size = NaN;
+  }
+  return {
+    type: UPDATE_PARTICULATE_SIZE,
+    payload: particulate_size
+  }
+}
+
+
 export function updateParticulateTypes(particulate_types){
   return {
     type: UPDATE_PARTICULATE_TYPES,
@@ -123,7 +168,7 @@ export function updateItemType(event, index, item_type){
       ];
       break;
     default:
-      path = [''];
+      path = ['',''];
       break;
   }
   return {
@@ -188,6 +233,24 @@ export default function inquiries(state = initialState, action){
     case UPDATE_PARTICULATE_TYPES:
       const item_updateParticulateTypes = combineToNewObject(state.item, {particulate_types: payload});
       return combineToNewObject(state, {item: item_updateParticulateTypes});
+    case UPDATE_PARTICULATE_SIZE:
+      const item_updateParticulateSize = combineToNewObject(state.item, {particulate_size: payload});
+      return combineToNewObject(state, {item: item_updateParticulateSize});
+    case UPDATE_TEMPERATURE:
+      const item_updateTemperature = combineToNewObject(state.item, {temperature: payload});
+      return combineToNewObject(state, {item: item_updateTemperature});
+    case UPDATE_PROCESS:
+      const item_updateProcess = combineToNewObject(state.item, {process: payload});
+      return combineToNewObject(state, {item: item_updateProcess});
+    case UPDATE_PRESSURE:
+      const item_updatePressure = combineToNewObject(state.item, {pressure: payload});
+      return combineToNewObject(state, {item: item_updatePressure});
+    case UPDATE_PIPE_SIZE:
+      const item_updatePipeSize = combineToNewObject(state.item, {pipe_size: payload});
+      return combineToNewObject(state, {item: item_updatePipeSize});
+    case UPDATE_PIPE_ADDITIONAL_INFORMATION:
+      const item_updatePipeAdditonalInformation = combineToNewObject(state.item, {pipe_additional_information: payload});
+      return combineToNewObject(state, {item: item_updatePipeAdditonalInformation});
     case UPDATE_ADDITIONAL_INFORMATION:
       const item_updateAdditionalInformation = combineToNewObject(state.item, {additional_information: payload});
       return combineToNewObject(state, {item: item_updateAdditionalInformation});

@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 /* Assets */
-import showCase from '../../../../assets/actuatorAndValve.jpg';
+import showCase from '../../../../assets/images/actuatorAndValve.jpg';
 
 export default function About(props){
   return (

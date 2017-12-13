@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {updateAdditionalInformation} from '../../../../../ducks/wizard';
 import {rubyRed} from '../../../../../assets/globalConstants/colors';
+import {getPrevious} from '../../../../../assets/functions/getNextAndPrevious.js';
 /* Components */
 import TextField from 'material-ui/TextField';
 import PathControl from './PathControl';
@@ -32,7 +33,7 @@ function SetAdditionalInformation(props){
       />
       <PathControl
         currentLocation={match.path}
-        previous={path ? path[path.length-1] : ''}
+        previous={getPrevious(path, '/additional-info')}
         next={''}
         conditionMet={
           !additional_information ||
@@ -49,7 +50,8 @@ function mapStateToProps(state){
   const {path, item} = state.wizard;
   const {additional_information} = item;
   return {
-    additional_information
+    additional_information,
+    path
   }
 }
 

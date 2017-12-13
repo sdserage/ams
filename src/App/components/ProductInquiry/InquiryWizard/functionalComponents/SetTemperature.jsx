@@ -1,21 +1,33 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {rubyRed} from '../../../../../assets/globalConstants/colors';
+import {updateTemperature} from '../../../../../ducks/wizard';
+import isValidNumber from '../../../../../assets/functions/isValidNumber';
+import {getNext, getPrevious} from '../../../../../assets/functions/getNextAndPrevious';
 /* Components */
 import PathControl from './PathControl';
+import NumberInput from 'material-ui-number-input';
 
 function SetTemperature(props){
   const {
     match,
-    path
+    path,
+    temperature,
+    updateTemperature
   } = props;
   return (
     <div>
+    <NumberInput
+      id='set-temperature'
+      onChange={updateTemperature}
+      min={0}
+      defaultValue={temperature}
+    />&#8457;{/*&#8451;*/}
       <PathControl
         currentLocation={match.path}
-        previous={''}
-        next={''}
-        conditionMet={true}
+        previous={getPrevious(path, '/temperature')}
+        next={getNext(path, '/temperature')}
+        conditionMet={isValidNumber(temperature)}
       />
     </div>
   );
@@ -23,9 +35,11 @@ function SetTemperature(props){
 
 function mapStateToProps(state){
   const {path, item} = state.wizard;
+  const {temperature} = item;
   return {
-    path
+    path,
+    temperature
   };
 }
 
-export default connect(mapStateToProps, {})(SetTemperature);
+export default connect(mapStateToProps, {updateTemperature})(SetTemperature);

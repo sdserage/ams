@@ -1,13 +1,13 @@
 import React from 'react';
 import './Home.css';
 /* Assets */
-import jareckiValvesLogo from '../../../../assets/jarecki-valves-logo.png';
-import maxAirTechnologyLogo from '../../../../assets/max-air-logo-black.png';
-import wintersInstrumentsLogo from '../../../../assets/winters-instruments-logo.png';
-import wintersInstrumentsAward from '../../../../assets/canandas-best-logo.png';
-import sestoValvesLogo from '../../../../assets/sesto-valves-logo.png';
-import deltaTProductsLogo from '../../../../assets/delta-t-products-logo.png';
-import showCase from '../../../../assets/products1.jpg';
+import jareckiValvesLogo from '../../../../assets/images/jarecki-valves-logo.png';
+import maxAirTechnologyLogo from '../../../../assets/images/max-air-logo-black.png';
+import wintersInstrumentsLogo from '../../../../assets/images/winters-instruments-logo.png';
+import wintersInstrumentsAward from '../../../../assets/images/canandas-best-logo.png';
+import sestoValvesLogo from '../../../../assets/images/sesto-valves-logo.png';
+import deltaTProductsLogo from '../../../../assets/images/delta-t-products-logo.png';
+import showCase from '../../../../assets/images/products1.jpg';
 
 export default function Home(props){
   return (
