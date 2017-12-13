@@ -1,7 +1,7 @@
 import React from 'react';
 import './Contact.css';
 /* Assets */
-import faceBookIcon from '../../../../assets/facebook-icon.png';
+import faceBookIcon from '../../../../assets/images/facebook-icon.png';
 
 export default function Contact(props){
   return (
