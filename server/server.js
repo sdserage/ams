@@ -1,0 +1,31 @@
+require('dotenv').config();
+const express       = require('express')
+    , session       = require('express-session')
+    , bodyParser    = require('body-parser')
+    , massive       = require('massive')
+    , passport      = require('passport')
+    , Auth0Strategy = require('passport-auth0')
+    , cors          = require('cors')
+/* Set Port */
+const PORT = process.env.PORT || 3010
+/* Create express app */
+const app = express();
+/* Middleware */
+// cors
+app.use(cors());
+// body-parser
+app.use(bodyParser.json());
+// session config
+app.use(session({                 // Step one
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());  // Step two
+app.use(passport.session());      // Step three
+// massive
+massive(process.env.CONNECTION_STRING).then(db => {
+    app.set('db', db);
+    app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+    console.log('Massive initialized')
+});
