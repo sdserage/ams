@@ -11,6 +11,7 @@ import Instrumentation from './functionalComponents/Instrumentation';
 import DustCollector from './functionalComponents/DustCollector';
 import Actuator from './functionalComponents/Actuator';
 import ControlButtons from './functionalComponents/ControlButtons';
+import DefaultDisplay from './functionalComponents/DefaultDisplay';
 
 const ACTUATOR = 'Actuator'
     , DUST_COLLECTOR = 'Dust Collector'
@@ -69,9 +70,15 @@ class ProductInquiry extends Component {
     return (
       <main id='product-inquiry'>
         <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
+          {
+            itemList && itemList.length > 0 &&
+              <ControlButtons addNewItem = {this.startNewItem} resetWizard={resetWizard} submitItems = {this.submitItems}/>
+          }
           {displayItems}
         </section>
-        <ControlButtons addNewItem = {this.startNewItem} resetWizard={resetWizard} submitItems = {this.submitItems}/>
+        <section className={`inquiry-wizard-info ${itemList.length > 10 && 'disabled'}`}>
+          <DefaultDisplay itemList={itemList} addNewItem={this.startNewItem}/>
+        </section>
         {
           itemCreatorOn &&
             <div>

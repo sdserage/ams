@@ -7,14 +7,15 @@ export default function ControlButtons(props){
   const {
     submitItems,
     addNewItem,
-    resetWizard
+    resetWizard,
+    itemList
   } = props;
   return (
     <div  className='control-buttons'>
       <Link to='/productinquiry'>
         <RaisedButton label='+ Add' secondary={true} onClick={()=>{addNewItem(); resetWizard();}}/>
       </Link>
-      <RaisedButton primary={true} label='Submit' onClick={()=> submitItems()}/>
+        <RaisedButton primary={true} label='Submit' onClick={()=> submitItems()}/>
     </div>
   );
 }
