@@ -13,7 +13,7 @@ import {
 } from 'material-ui/Card';
 
 export default function DefaultDisplay(props){
-  const {addNewItem, itemList} = props;
+  const {addNewItem, itemList, resetWizard} = props;
   return (
     <Card zDepth={2} className='default-display'>
       <h1>Welcome to Product Inquiry Wizard Ver 1.0!</h1>
@@ -83,11 +83,13 @@ export default function DefaultDisplay(props){
         Ready to start an inquiry? Go ahead and select the button below:
       </CardText>
       <div className='default-display-button-wrapper'>
-        <RaisedButton
-          secondary={true}
-          label={itemList && itemList.length < 0 ? '+ Add Item' : 'Click here to start an inquiry'}
-          onClick={()=>addNewItem()}
-        />
+        <Link to='/productinquiry'>
+          <RaisedButton
+            secondary={true}
+            label={itemList && itemList.length < 0 ? '+ Add Item' : 'Click here to start an inquiry'}
+            onClick={()=>{addNewItem(); resetWizard();}}
+          />
+        </Link>
       </div>
       <h2>Notes about the current version</h2>
       <CardText className='display-paragraph'>

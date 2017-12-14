@@ -70,6 +70,7 @@ class ProductInquiry extends Component {
     return (
       <main id='product-inquiry'>
         <section className={`inquiry-item-display ${!itemList.length && 'disabled'}`}>
+          <h1>{itemList.length > 1 ? 'Your Inquiry Items' : 'Your Inquiry Item'}</h1>
           {
             itemList && itemList.length > 0 &&
               <ControlButtons addNewItem = {this.startNewItem} resetWizard={resetWizard} submitItems = {this.submitItems}/>
@@ -77,7 +78,11 @@ class ProductInquiry extends Component {
           {displayItems}
         </section>
         <section className={`inquiry-wizard-info ${itemList.length > 10 && 'disabled'}`}>
-          <DefaultDisplay itemList={itemList} addNewItem={this.startNewItem}/>
+          <DefaultDisplay
+            itemList={itemList}
+            resetWizard={resetWizard}
+            addNewItem={this.startNewItem}
+          />
         </section>
         {
           itemCreatorOn &&

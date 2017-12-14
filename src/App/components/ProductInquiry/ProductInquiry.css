@@ -7,6 +7,9 @@
 
 .inquiry-item-display {
   padding: 0 10vw 0 10vw; }
+  .inquiry-item-display h1 {
+    text-align: center;
+    margin-bottom: 20px; }
 
 .disabled {
   display: none; }
@@ -56,6 +59,8 @@
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  margin-bottom: 40px; }
+  margin-bottom: 20px; }
+  .control-buttons div {
+    width: inherit; }
   .control-buttons span {
     color: white; }
