@@ -185,7 +185,7 @@ export function updatePipeSize(event, pipe_size){
     pipe_size = NaN;
   }
   return {
-    type: UPDATE_VALVE_SIZE,
+    type: UPDATE_PIPE_SIZE,
     payload: +pipe_size
   }
 }
