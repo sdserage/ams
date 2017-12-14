@@ -1,0 +1,28 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700);
+.inquiry-wizard-info {
+  margin: 10px; }
+
+.default-display {
+  padding: 20px; }
+  .default-display h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #931621; }
+  .default-display h2 {
+    color: #03191E;
+    margin-bottom: 10px; }
+  .default-display h3 {
+    color: #545E75; }
+  .default-display a {
+    color: #30BCED; }
+  .default-display h5 {
+    color: #545E75;
+    text-align: right; }
+
+.default-display-button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px; }
+
+.display-paragraph {
+  line-height: 20px; }
