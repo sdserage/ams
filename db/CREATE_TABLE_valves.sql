@@ -1,5 +1,6 @@
 CREATE TABLE valves (
   item_id INT REFERENCES inquiry_items (item_id) NOT NULL,
+  process VARCHAR(30),
   temperature DECIMAL,
   pressure DECIMAL,
   pipe_size DECIMAL,
