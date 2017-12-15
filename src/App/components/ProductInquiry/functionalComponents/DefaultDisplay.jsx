@@ -86,7 +86,7 @@ export default function DefaultDisplay(props){
         <Link to='/productinquiry'>
           <RaisedButton
             secondary={true}
-            label={itemList && itemList.length < 0 ? '+ Add Item' : 'Click here to start an inquiry'}
+            label={itemList && itemList.length > 0 ? '+ Add Item' : 'Click here to start an inquiry'}
             onClick={()=>{addNewItem(); resetWizard();}}
           />
         </Link>
