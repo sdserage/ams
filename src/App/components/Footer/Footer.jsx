@@ -18,9 +18,12 @@ export default function Footer(props){
           </Link>
         </div>
         <div className='footer-box'>
+        {
+          false && /* disabled for now */
           <Link to='/factoidsandtools'>
             <h3>Factoids & Tools</h3>
           </Link>
+        }
         </div>
         <div className='footer-box'>
           <Link to='/productinquiry'>

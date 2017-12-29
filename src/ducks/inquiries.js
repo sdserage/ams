@@ -1,12 +1,48 @@
-const _FULFILLED   = 'FULFILLED'
-    , DELETE_ITEM  = 'DELETE_ITEM'
-    , ADD_ITEM     = 'ADD_ITEM'
-    , ACTIVATE     = 'ACTIVATE'
-    , DEACTIVATE   = 'DEACTIVATE'
-    , initialState = {
+import axios from 'axios';
+const _FULFILLED            = '_FULFILLED'
+    , GET_INQUIRY_LIST      = 'GET_INQUIRY_LIST'
+    , DELETE_ITEM           = 'DELETE_ITEM'
+    , ADD_ITEM              = 'ADD_ITEM'
+    , ACTIVATE              = 'ACTIVATE'
+    , DEACTIVATE            = 'DEACTIVATE'
+    , INQUIRY_CONTENTS_ON   = 'INQUIRY_CONTENTS_ON'
+    , INQUIRY_CONTENTS_OFF  = 'INQUIRY_CONTENTS_OFF'
+    , initialState          = {
       itemCreatorOn: false, //true
-      itemList: []
+      itemList: [],
+      inquiryList: [],
+      viewInquiryContentsOn: false,
+      inquiryContents: []
     };
+
+const url = '/api/';
+
+export function inquiryContentsOff(){
+  return {
+    type: INQUIRY_CONTENTS_OFF,
+    payload: false
+  }
+}
+
+export function inquiryContentsOn(){
+  return {
+    type: INQUIRY_CONTENTS_ON,
+    payload: true
+  }
+}
+
+export function getInquiryList(queries){
+  const response = axios.get(`${url}inquiries${
+    queries ? '?' + queries.join('&') : ''
+  }`)
+    .then(resp=>{
+      return resp.data;
+    });
+  return {
+    type: GET_INQUIRY_LIST,
+    payload: response
+  }
+}
 
 export function activate(){
   return {
@@ -45,6 +81,12 @@ function combineToNewObject(baseObject, newObject){
 export default function inquiries(state = initialState, action){
   const {type, payload} = action;
   switch(type){
+    case INQUIRY_CONTENTS_ON:
+      return combineToNewObject(state, {viewInquiryContentsOn: payload});
+    case INQUIRY_CONTENTS_OFF:
+      return combineToNewObject(state, {viewInquiryContentsOn: payload});
+    case GET_INQUIRY_LIST + _FULFILLED:
+      return combineToNewObject(state, {inquiryList: payload});
     case DELETE_ITEM:
       return combineToNewObject(state, {itemList: payload});
     case ACTIVATE:
