@@ -7,7 +7,9 @@ export default function Header(props){
   return (
     <div id='top'>
       <header id='header'>
-        <img src={logo} alt='logo'/>
+        <Link to='/viewinquiries'>
+          <img src={logo} alt='logo'/>
+        </Link>
         <nav>
           <Link to='/'>
             <p>Home</p>
@@ -20,10 +22,12 @@ export default function Header(props){
           <Link to='/contact'>
             <p>Contact</p>
           </Link>
-
-          <Link to='/factoidsandtools'>
-            <p>Factoids & Tools</p>
-          </Link>
+          {
+            false && /* disabled for now */
+            <Link to='/factoidsandtools'>
+              <p>Factoids & Tools</p>
+            </Link>
+          }
 
           <Link to='/productinquiry'>
             <p>Product Inquiry</p>
