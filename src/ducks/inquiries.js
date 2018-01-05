@@ -1,13 +1,14 @@
 import axios from 'axios';
-const _FULFILLED            = '_FULFILLED'
-    , GET_INQUIRY_LIST      = 'GET_INQUIRY_LIST'
-    , DELETE_ITEM           = 'DELETE_ITEM'
-    , ADD_ITEM              = 'ADD_ITEM'
-    , ACTIVATE              = 'ACTIVATE'
-    , DEACTIVATE            = 'DEACTIVATE'
-    , INQUIRY_CONTENTS_ON   = 'INQUIRY_CONTENTS_ON'
-    , INQUIRY_CONTENTS_OFF  = 'INQUIRY_CONTENTS_OFF'
-    , initialState          = {
+const _FULFILLED              = '_FULFILLED'
+    , GET_INQUIRY_LIST        = 'GET_INQUIRY_LIST'
+    , DELETE_ITEM             = 'DELETE_ITEM'
+    , ADD_ITEM                = 'ADD_ITEM'
+    , ACTIVATE                = 'ACTIVATE'
+    , DEACTIVATE              = 'DEACTIVATE'
+    , INQUIRY_CONTENTS_ON     = 'INQUIRY_CONTENTS_ON'
+    , INQUIRY_CONTENTS_OFF    = 'INQUIRY_CONTENTS_OFF'
+    , UPDATE_INQUIRY_CONTENTS = 'UPDATE_INQUIRY_CONTENTS'
+    , initialState            = {
       itemCreatorOn: false, //true
       itemList: [],
       inquiryList: [],
@@ -16,6 +17,17 @@ const _FULFILLED            = '_FULFILLED'
     };
 
 const url = '/api/';
+
+export function updateInquiryContents(inquiry_id){
+  const response = axios.get(`${url}inquiries/inquiry_items/${inquiry_id}`)
+    .then(resp=>{
+      return resp.data;
+    });
+  return {
+    type: UPDATE_INQUIRY_CONTENTS,
+    payload: response
+  }
+}
 
 export function inquiryContentsOff(){
   return {
@@ -97,6 +109,8 @@ export default function inquiries(state = initialState, action){
       let itemListCopy = state.itemList.slice();
       itemListCopy.push(payload);
       return combineToNewObject(state, {itemList: itemListCopy});
+    case UPDATE_INQUIRY_CONTENTS + _FULFILLED:
+      return combineToNewObject(state, {inquiryContents: payload});
     default:
       return state;
   }

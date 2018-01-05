@@ -17,7 +17,7 @@ const months = [
   'December'
 ];
 
-function displayInquiryList(inquiryList){
+function displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContents){
   if(inquiryList){
     const jsxList = inquiryList.map((inquiry, index)=>{
       const {
@@ -34,6 +34,7 @@ function displayInquiryList(inquiryList){
           key={index}
           zDepth={3}
           className='inquiry-display-box'
+          onClick={()=>{updateInquiryContents(inquiry_id); inquiryContentsOn()}}
         >
           <CardText>
             {`Date: ${months[standardDate.getMonth()]} ${standardDate.getDate()}, ${standardDate.getFullYear()}`}
@@ -58,10 +59,10 @@ function displayInquiryList(inquiryList){
 }
 
 export default function InquiryDisplay(props){
-  const {inquiryList} = props;
+  const {inquiryList, inquiryContentsOn, updateInquiryContents} = props;
   return(
     <section className='inquiry-display-wrapper'>
-      {displayInquiryList(inquiryList)}
+      {displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContents)}
     </section>
   );
 }

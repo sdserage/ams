@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import './ViewInquiries.css';
-import {getInquiryList, inquiryContentsOn, inquiryContentsOff} from '../../../ducks/inquiries';
+import {
+  getInquiryList,
+  inquiryContentsOn,
+  inquiryContentsOff,
+  updateInquiryContents
+} from '../../../ducks/inquiries';
 import {connect} from 'react-redux';
 /* Components */
 import InquiryDisplay from './functionalComponents/InquiryDisplay';
@@ -43,11 +48,17 @@ class ViewInquiries extends Component {
       inquiryList,
       viewInquiryContentsOn,
       inquiryContentsOn,
-      inquiryContentsOff
+      inquiryContentsOff,
+      inquiryContents,
+      updateInquiryContents
     } = this.props;
     return (
       <main id='view-inquiries'>
-        <InquiryDisplay inquiryList={inquiryList}/>
+        <InquiryDisplay
+          inquiryList={inquiryList}
+          inquiryContentsOn={inquiryContentsOn}
+          updateInquiryContents={updateInquiryContents}
+        />
         {
           viewInquiryContentsOn &&
           <div>
@@ -56,7 +67,7 @@ class ViewInquiries extends Component {
               onClick={inquiryContentsOff}
             >
             </div>
-            <ItemDisplay/>
+            <ItemDisplay inquiryContents={inquiryContents}/>
           </div>
         }
       </main>
@@ -65,11 +76,23 @@ class ViewInquiries extends Component {
 };
 
 function mapStateToProps(state){
-  const {inquiryList, viewInquiryContentsOn} = state.inquiries;
+  const {
+    inquiryList,
+    viewInquiryContentsOn,
+    inquiryContents
+  } = state.inquiries;
   return {
     inquiryList,
-    viewInquiryContentsOn
+    viewInquiryContentsOn,
+    inquiryContents
   }
 }
 
-export default connect(mapStateToProps,{getInquiryList, inquiryContentsOn, inquiryContentsOff0})(ViewInquiries);
+const actionBuilders = {
+  getInquiryList,
+  inquiryContentsOn,
+  inquiryContentsOff,
+  updateInquiryContents
+}
+
+export default connect(mapStateToProps, actionBuilders)(ViewInquiries);
