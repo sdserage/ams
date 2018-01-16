@@ -57,19 +57,11 @@ class ViewInquiries extends Component {
         <InquiryDisplay
           inquiryList={inquiryList}
           inquiryContentsOn={inquiryContentsOn}
+          inquiryContentsOff={inquiryContentsOff}
           updateInquiryContents={updateInquiryContents}
+          inquiryContents={inquiryContents}
+          viewInquiryContentsOn={viewInquiryContentsOn}
         />
-        {
-          viewInquiryContentsOn &&
-          <div>
-            <div
-              className='inquiry-item-list-wrapper'
-              onClick={inquiryContentsOff}
-            >
-            </div>
-            <ItemDisplay inquiryContents={inquiryContents}/>
-          </div>
-        }
       </main>
     )
   }
