@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 /* Components */
 import {Card, CardText, CardTitle} from 'material-ui/Card';
+import ItemDisplay from './ItemDisplay';
 
 const months = [
   'January',
@@ -17,7 +18,13 @@ const months = [
   'December'
 ];
 
-function displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContents){
+function displayInquiryList
+  (inquiryList,
+  inquiryContents,
+  inquiryContentsOn,
+  inquiryContentsOff,
+  updateInquiryContents,
+  viewInquiryContentsOn){
   if(inquiryList){
     const jsxList = inquiryList.map((inquiry, index)=>{
       const {
@@ -34,7 +41,22 @@ function displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContent
           key={index}
           zDepth={3}
           className='inquiry-display-box'
-          onClick={()=>{updateInquiryContents(inquiry_id); inquiryContentsOn()}}
+          expanded={
+            viewInquiryContentsOn &&
+            inquiryContents[0] &&
+            inquiryContents[0].inquiry_id === inquiry_id
+          }
+          onClick={()=>{
+            if(viewInquiryContentsOn &&
+            inquiryContents[0] &&
+            inquiryContents[0].inquiry_id === inquiry_id){
+              updateInquiryContents(0);
+              inquiryContentsOff();
+            }else{
+              updateInquiryContents(inquiry_id);
+              inquiryContentsOn()
+            }
+          }}
         >
           <CardText>
             {`Date: ${months[standardDate.getMonth()]} ${standardDate.getDate()}, ${standardDate.getFullYear()}`}
@@ -48,8 +70,8 @@ function displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContent
           <CardText>
             {`Phone: ${phone_number}`}
           </CardText>
-          <CardText expandable={true} expanded={false}>
-            test
+          <CardText expandable={true}>
+            <ItemDisplay inquiryContents={inquiryContents}/>
           </CardText>
         </Card>
       );
@@ -59,10 +81,26 @@ function displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContent
 }
 
 export default function InquiryDisplay(props){
-  const {inquiryList, inquiryContentsOn, updateInquiryContents} = props;
+  const {
+    inquiryList,
+    inquiryContents,
+    inquiryContentsOn,
+    inquiryContentsOff,
+    updateInquiryContents,
+    viewInquiryContentsOn
+  } = props;
   return(
     <section className='inquiry-display-wrapper'>
-      {displayInquiryList(inquiryList, inquiryContentsOn, updateInquiryContents)}
+      {
+        displayInquiryList(
+          inquiryList,
+          inquiryContents,
+          inquiryContentsOn,
+          inquiryContentsOff,
+          updateInquiryContents,
+          viewInquiryContentsOn
+        )
+      }
     </section>
   );
 }
