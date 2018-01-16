@@ -16,14 +16,27 @@ function Actuator(props){
     stem_additional_information,
     additional_information
   } = props.item;
-  const {index, itemList, deleteItem} = props;
+  const {index, itemList, deleteItem, displayButtons} = props;
   return (
     <Card>
       <div className='card-heading'>
         <h2 className='item-header'>{item_type}</h2>
         <div className='tool-icons'>
-          <FontAwesome name='pencil-square-o' className='card-icons'/>
-          <FontAwesome name='trash-o' className='card-icons' onClick={()=> deleteItem(itemList, index)}/>
+          {
+            /* displayButtons &&
+              <FontAwesome
+                name='pencil-square-o'
+                className='card-icons'
+              /> */
+          }
+          {
+            displayButtons &&
+              <FontAwesome
+                name='trash-o'
+                className='card-icons'
+                onClick={()=> deleteItem(itemList, index)}
+              />
+          }
         </div>
       </div>
       <div className='card-info'>
