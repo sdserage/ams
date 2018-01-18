@@ -31,7 +31,9 @@ function displayInquiryList
   inquiryContentsOn,
   inquiryContentsOff,
   updateInquiryContents,
-  viewInquiryContentsOn){
+  viewInquiryContentsOn,
+  archiveInquiry,
+  unarchiveInquiry){
   if(inquiryList){
     const jsxList = inquiryList.map((inquiry, index)=>{
       const {
@@ -82,7 +84,17 @@ function displayInquiryList
               </IconButton>
             }
             iconElementRight={
-              <IconButton><Archive/></IconButton>
+              <IconButton
+                onClick={()=>{
+                  if(is_archived){
+                    unarchiveInquiry(inquiry_id);
+                  }else{
+                    archiveInquiry(inquiry_id);
+                  }
+                }}
+              >
+                {is_archived ? <Unarchive/> : <Archive/>}
+              </IconButton>
             }
 
           />
@@ -109,7 +121,9 @@ export default function InquiryDisplay(props){
     inquiryContentsOn,
     inquiryContentsOff,
     updateInquiryContents,
-    viewInquiryContentsOn
+    viewInquiryContentsOn,
+    archiveInquiry,
+    unarchiveInquiry
   } = props;
   return(
     <section className='inquiry-display-wrapper'>
@@ -120,7 +134,9 @@ export default function InquiryDisplay(props){
           inquiryContentsOn,
           inquiryContentsOff,
           updateInquiryContents,
-          viewInquiryContentsOn
+          viewInquiryContentsOn,
+          archiveInquiry,
+          unarchiveInquiry
         )
       }
     </section>

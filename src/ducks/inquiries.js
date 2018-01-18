@@ -8,6 +8,8 @@ const _FULFILLED              = '_FULFILLED'
     , INQUIRY_CONTENTS_ON     = 'INQUIRY_CONTENTS_ON'
     , INQUIRY_CONTENTS_OFF    = 'INQUIRY_CONTENTS_OFF'
     , UPDATE_INQUIRY_CONTENTS = 'UPDATE_INQUIRY_CONTENTS'
+    , ARCHIVE_INQUIRY         = 'ARCHIVE_INQUIRY'
+    , UNARCHIVE_INQUIRY       = 'UNARCHIVE_INQUIRY'
     , initialState            = {
       itemCreatorOn: false, //true
       itemList: [],
@@ -17,6 +19,22 @@ const _FULFILLED              = '_FULFILLED'
     };
 
 const url = '/api/';
+
+export function archiveInquiry(inquiry_id){
+  console.log('test')
+  return {
+    type: 'ARCHIVE_INQUIRY',
+    payload: []
+  }
+}
+
+export function unarchiveInquiry(inquiry_id){
+  console.log('test')
+  return {
+    type: 'UNARCHIVE_INQUIRY',
+    payload: []
+  }
+}
 
 export function updateInquiryContents(inquiry_id){
   const response = axios.get(`${url}inquiries/inquiry_items/${inquiry_id}`)
@@ -111,6 +129,10 @@ export default function inquiries(state = initialState, action){
       return combineToNewObject(state, {itemList: itemListCopy});
     case UPDATE_INQUIRY_CONTENTS + _FULFILLED:
       return combineToNewObject(state, {inquiryContents: payload});
+    case ARCHIVE_INQUIRY + _FULFILLED:
+      return combineToNewObject(state, {inquiryList: payload});
+    case UNARCHIVE_INQUIRY + _FULFILLED:
+      return combineToNewObject(state, {inquiryList: payload});
     default:
       return state;
   }
