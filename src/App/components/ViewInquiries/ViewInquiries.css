@@ -17,5 +17,7 @@
   padding: 10vh 10vw 10vh 10vw; }
 
 .inquiry-item-display-contents {
-  padding: 10px;
-  background: white; }
+  padding: 10px; }
+
+.inquiry-item-display-heading {
+  margin-bottom: 20px; }

@@ -4,7 +4,9 @@ import {
   getInquiryList,
   inquiryContentsOn,
   inquiryContentsOff,
-  updateInquiryContents
+  updateInquiryContents,
+  archiveInquiry,
+  unarchiveInquiry
 } from '../../../ducks/inquiries';
 import {connect} from 'react-redux';
 /* Components */
@@ -50,7 +52,9 @@ class ViewInquiries extends Component {
       inquiryContentsOn,
       inquiryContentsOff,
       inquiryContents,
-      updateInquiryContents
+      updateInquiryContents,
+      archiveInquiry,
+      unarchiveInquiry
     } = this.props;
     return (
       <main id='view-inquiries'>
@@ -61,6 +65,8 @@ class ViewInquiries extends Component {
           updateInquiryContents={updateInquiryContents}
           inquiryContents={inquiryContents}
           viewInquiryContentsOn={viewInquiryContentsOn}
+          archiveInquiry={archiveInquiry}
+          unarchiveInquiry={unarchiveInquiry}
         />
       </main>
     )
@@ -84,7 +90,9 @@ const actionBuilders = {
   getInquiryList,
   inquiryContentsOn,
   inquiryContentsOff,
-  updateInquiryContents
+  updateInquiryContents,
+  archiveInquiry,
+  unarchiveInquiry
 }
 
 export default connect(mapStateToProps, actionBuilders)(ViewInquiries);

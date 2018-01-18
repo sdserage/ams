@@ -36,29 +36,38 @@ class ProductInquiry extends Component {
   };
 
   render(){
-    const {itemList, deleteItem, itemCreatorOn, resetWizard} = this.props;
+    const {
+      itemList,
+      deleteItem,
+      itemCreatorOn,
+      resetWizard
+    } = this.props;
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
         case ACTUATOR:
           return <Actuator
+                  displayButtons={true}
                   item={item}
                   key={index}
                   index={index}
                   deleteItem={this.deleteItem}/>;
         case DUST_COLLECTOR:
           return <DustCollector
+                  displayButtons={true}
                   item={item}
                   key={index}
                   index={index}
                   deleteItem={this.deleteItem}/>;
         case INSTRUMENTATION:
           return <Instrumentation
+                  displayButtons={true}
                   item={item}
                   key={index}
                   index={index}
                   deleteItem={this.deleteItem}/>;
         case VALVE:
           return <Valve
+                  displayButtons={true}
                   item={item}
                   key={index}
                   index={index}

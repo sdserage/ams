@@ -44,10 +44,11 @@ function MappedItems(inquiryContents){
 export default function ItemDisplay(props){
   const {inquiryContents} = props;
   return(
-    <Card
+    <div
       className='inquiry-item-display-contents'
     >
+      <h2 className='inquiry-item-display-heading'>Inquiry Items:</h2>
       {MappedItems(inquiryContents)}
-    </Card>
+    </div>
   );
 }

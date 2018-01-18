@@ -36,10 +36,4 @@ class InquiryWizard extends Component{
   }
 };
 
-function mapStateToProps(state){
-  return {
-
-  };
-};
-
-export default connect(mapStateToProps, {resetWizard})(InquiryWizard);
+export default connect(null, {resetWizard})(InquiryWizard);

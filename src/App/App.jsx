@@ -25,6 +25,9 @@ const lighterColor = 'white'
       palette: {
         primary1Color1: lightColor,
         accent1Color: mediumColor
+      },
+      appBar: {
+        color: lightColor
       }
     };
 
