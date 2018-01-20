@@ -12,6 +12,7 @@ import {connect} from 'react-redux';
 /* Components */
 import InquiryDisplay from './functionalComponents/InquiryDisplay';
 import ItemDisplay from './functionalComponents/ItemDisplay';
+import FilterInquiries from './functionalComponents/FilterInquiries';
 
 class ViewInquiries extends Component {
   constructor(props){
