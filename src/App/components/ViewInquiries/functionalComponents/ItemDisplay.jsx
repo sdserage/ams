@@ -12,7 +12,6 @@ const ACTUATOR = 'Actuator'
     , Valve = Instrumentation;
 
 function MappedItems(inquiryContents){
-  console.log(inquiryContents)
   return inquiryContents.map((item, index)=>{
     switch(item.item_type){
       case ACTUATOR:

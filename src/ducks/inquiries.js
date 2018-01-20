@@ -10,29 +10,54 @@ const _FULFILLED              = '_FULFILLED'
     , UPDATE_INQUIRY_CONTENTS = 'UPDATE_INQUIRY_CONTENTS'
     , ARCHIVE_INQUIRY         = 'ARCHIVE_INQUIRY'
     , UNARCHIVE_INQUIRY       = 'UNARCHIVE_INQUIRY'
+    , UPDATE_PRIMARY_FILTER   = 'UPDATE_PRIMARY_FILTER'
     , initialState            = {
       itemCreatorOn: false, //true
       itemList: [],
       inquiryList: [],
       viewInquiryContentsOn: false,
-      inquiryContents: []
+      inquiryContents: [],
+      filterValues: {
+        primaryFilter: 'non-archived'
+      }
     };
 
 const url = '/api/';
 
-export function archiveInquiry(inquiry_id){
-  console.log('test')
+export function updatePrimaryFilter(event, index, value,){
   return {
-    type: 'ARCHIVE_INQUIRY',
-    payload: []
+    type: UPDATE_PRIMARY_FILTER,
+    payload: value
   }
 }
 
-export function unarchiveInquiry(inquiry_id){
-  console.log('test')
+export function archiveInquiry(inquiry_id, queries){
+  const response = axios.put(`${url}inquiries/${inquiry_id}`)
+    .then(resp=>{
+      return axios.get(`${url}inquiries${
+        queries ? '?' + queries.join('&') : ''
+      }`).then(resp=>{
+        return resp.data;
+      });
+    });
   return {
-    type: 'UNARCHIVE_INQUIRY',
-    payload: []
+    type: 'ARCHIVE_INQUIRY',
+    payload: response
+  }
+}
+
+export function unarchiveInquiry(inquiry_id, queries){
+  const response = axios.put(`${url}inquiries/${inquiry_id}`)
+    .then(resp=>{
+      return axios.get(`${url}inquiries${
+        queries ? '?' + queries.join('&') : ''
+      }`).then(resp=>{
+        return resp.data;
+      });
+    });
+  return {
+    type: 'ARCHIVE_INQUIRY',
+    payload: response
   }
 }
 
@@ -133,6 +158,9 @@ export default function inquiries(state = initialState, action){
       return combineToNewObject(state, {inquiryList: payload});
     case UNARCHIVE_INQUIRY + _FULFILLED:
       return combineToNewObject(state, {inquiryList: payload});
+    case UPDATE_PRIMARY_FILTER:
+      const filterValues_updatePrimaryFilter = combineToNewObject({}, {primaryFilter: payload})
+      return combineToNewObject(state, {filterValues: filterValues_updatePrimaryFilter});
     default:
       return state;
   }
