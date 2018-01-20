@@ -20,19 +20,33 @@ const _FULFILLED              = '_FULFILLED'
 
 const url = '/api/';
 
-export function archiveInquiry(inquiry_id){
-  console.log('test')
+export function archiveInquiry(inquiry_id, queries){
+  const response = axios.put(`${url}inquiries/${inquiry_id}`)
+    .then(resp=>{
+      return axios.get(`${url}inquiries${
+        queries ? '?' + queries.join('&') : ''
+      }`).then(resp=>{
+        return resp.data;
+      });
+    });
   return {
     type: 'ARCHIVE_INQUIRY',
-    payload: []
+    payload: response
   }
 }
 
-export function unarchiveInquiry(inquiry_id){
-  console.log('test')
+export function unarchiveInquiry(inquiry_id, queries){
+  const response = axios.put(`${url}inquiries/${inquiry_id}`)
+    .then(resp=>{
+      return axios.get(`${url}inquiries${
+        queries ? '?' + queries.join('&') : ''
+      }`).then(resp=>{
+        return resp.data;
+      });
+    });
   return {
-    type: 'UNARCHIVE_INQUIRY',
-    payload: []
+    type: 'ARCHIVE_INQUIRY',
+    payload: response
   }
 }
 
