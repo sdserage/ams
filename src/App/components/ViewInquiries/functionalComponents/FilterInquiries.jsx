@@ -6,13 +6,27 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import {
   Toolbar,
   ToolbarGroup,
-  ToolBarSeparator,
+  ToolbarSeparator,
   ToolbarTitle
 } from 'material-ui/Toolbar';
 
 export default function FilterInquiries(props){
+  const {
+    filterValues,
+    updatePrimaryFilter
+  } = props;
+  const {
+    primaryFilter
+  } = filterValues;
   return (
-    <div>
-    </div>
+    <Toolbar>
+      <ToolbarGroup firstChild={true}>
+        <DropDownMenu value={primaryFilter} onChange={updatePrimaryFilter}>
+          <MenuItem value='non-archived' primaryText='New Inquiries'/>
+          <MenuItem value='archived' primaryText='Archived Inquiries'/>
+          <MenuItem value='all' primaryText='All Inquiries'/>
+        </DropDownMenu>
+      </ToolbarGroup>
+    </Toolbar>
   )
 }
