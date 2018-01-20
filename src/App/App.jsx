@@ -28,7 +28,15 @@ const lighterColor = 'white'
       },
       appBar: {
         color: lightColor
-      }
+      },
+      toolbar: {
+        // color: lighterColor,
+        // hoverColor: lightColor,
+        // iconColor: '#fff',
+        // separatorColor: lightColor,
+        backgroundColor: darkColor
+
+    }
     };
 
 class App extends Component {
