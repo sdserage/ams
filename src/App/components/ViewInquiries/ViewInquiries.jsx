@@ -7,7 +7,10 @@ import {
   updateInquiryContents,
   archiveInquiry,
   unarchiveInquiry,
-  updatePrimaryFilter
+  updatePrimaryFilter,
+  updatePropertyFilter,
+  deleteModeOn,
+  deleteModeOff
 } from '../../../ducks/inquiries';
 import {connect} from 'react-redux';
 /* Components */
@@ -58,13 +61,19 @@ class ViewInquiries extends Component {
       archiveInquiry,
       unarchiveInquiry,
       filterValues,
-      updatePrimaryFilter
+      updatePrimaryFilter,
+      updatePropertyFilter,
+      deleteModeOn,
+      deleteModeOff
     } = this.props;
     return (
       <main id='view-inquiries'>
         <FilterInquiries
           filterValues={filterValues}
           updatePrimaryFilter={updatePrimaryFilter}
+          updatePropertyFilter={updatePropertyFilter}
+          deleteModeOn={deleteModeOn}
+          deleteModeOff={deleteModeOff}
         />
         <InquiryDisplay
           inquiryList={inquiryList}
@@ -103,7 +112,10 @@ const actionBuilders = {
   updateInquiryContents,
   archiveInquiry,
   unarchiveInquiry,
-  updatePrimaryFilter
+  updatePrimaryFilter,
+  updatePropertyFilter,
+  deleteModeOn,
+  deleteModeOff
 }
 
 export default connect(mapStateToProps, actionBuilders)(ViewInquiries);

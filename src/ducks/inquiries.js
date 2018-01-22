@@ -11,19 +11,44 @@ const _FULFILLED              = '_FULFILLED'
     , ARCHIVE_INQUIRY         = 'ARCHIVE_INQUIRY'
     , UNARCHIVE_INQUIRY       = 'UNARCHIVE_INQUIRY'
     , UPDATE_PRIMARY_FILTER   = 'UPDATE_PRIMARY_FILTER'
+    , UPDATE_PROPERTY_FILTER  = 'UPDATE_PROPERTY_FILTER'
+    , DELETE_MODE_ON          = 'DELETE_MODE_ON'
+    , DELETE_MODE_OFF         = 'DELETE_MODE_OFF'
     , initialState            = {
-      itemCreatorOn: false, //true
-      itemList: [],
-      inquiryList: [],
-      viewInquiryContentsOn: false,
-      inquiryContents: [],
+      itemCreatorOn:          false, //true
+      itemList:               [],
+      inquiryList:            [],
+      viewInquiryContentsOn:  false,
+      inquiryContents:        [],
       filterValues: {
-        primaryFilter: 'non-archived'
+        primaryFilter:        'non-archived',
+        propertyFilter:       'No filter',
+        propertyFilterValue:  '',
+        deleteMode:           false
       }
     };
 
 const url = '/api/';
 
+export function deleteModeOn(){
+  return {
+    type: DELETE_MODE_ON,
+    payload: true
+  }
+}
+export function deleteModeOff(){
+  return {
+    type: DELETE_MODE_OFF,
+    payload: false
+  }
+}
+
+export function updatePropertyFilter(event, index, value,){
+  return {
+    type: UPDATE_PROPERTY_FILTER,
+    payload: value
+  }
+}
 export function updatePrimaryFilter(event, index, value,){
   return {
     type: UPDATE_PRIMARY_FILTER,
@@ -159,8 +184,17 @@ export default function inquiries(state = initialState, action){
     case UNARCHIVE_INQUIRY + _FULFILLED:
       return combineToNewObject(state, {inquiryList: payload});
     case UPDATE_PRIMARY_FILTER:
-      const filterValues_updatePrimaryFilter = combineToNewObject({}, {primaryFilter: payload})
+      const filterValues_updatePrimaryFilter = combineToNewObject(state.filterValues, {primaryFilter: payload})
       return combineToNewObject(state, {filterValues: filterValues_updatePrimaryFilter});
+    case UPDATE_PROPERTY_FILTER:
+      const filterValues_updatePropertyFilter = combineToNewObject(state.filterValues, {propertyFilter: payload})
+      return combineToNewObject(state, {filterValues: filterValues_updatePropertyFilter});
+    case DELETE_MODE_ON:
+      const filterValues_deleteModeOn = combineToNewObject(state.filterValues, {deleteMode: payload});
+      return combineToNewObject(state, {filterValues: filterValues_deleteModeOn});
+    case DELETE_MODE_OFF:
+    const filterValues_deleteModeOff = combineToNewObject(state.filterValues, {deleteMode: payload});
+    return combineToNewObject(state, {filterValues: filterValues_deleteModeOff});
     default:
       return state;
   }
