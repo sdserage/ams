@@ -15,6 +15,7 @@ const lighterColor = 'white'
     , mediumColor = '#931621'
     , darkColor = '#545E75'
     , darkerColor = '#03191E'
+    , warningTrackColor = '#be7379'
     , mainFont = "'Ubuntu'"
     , theme = {
       fontFamily: mainFont,
@@ -36,7 +37,11 @@ const lighterColor = 'white'
         // separatorColor: lightColor,
         backgroundColor: darkColor
 
-    }
+      },
+      toggle: {
+        thumbOnColor: mediumColor,
+        trackOnColor: warningTrackColor
+      }
     };
 
 class App extends Component {
