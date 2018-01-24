@@ -33,7 +33,8 @@ function displayInquiryList
   updateInquiryContents,
   viewInquiryContentsOn,
   archiveInquiry,
-  unarchiveInquiry){
+  unarchiveInquiry,
+  filterValues){
   if(inquiryList){
     const jsxList = inquiryList.map((inquiry, index)=>{
       const {
@@ -87,9 +88,9 @@ function displayInquiryList
               <IconButton
                 onClick={()=>{
                   if(is_archived){
-                    unarchiveInquiry(inquiry_id);
+                    unarchiveInquiry(inquiry_id, filterValues);
                   }else{
-                    archiveInquiry(inquiry_id);
+                    archiveInquiry(inquiry_id, filterValues);
                   }
                 }}
               >
