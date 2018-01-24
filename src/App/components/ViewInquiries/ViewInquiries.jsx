@@ -9,6 +9,9 @@ import {
   unarchiveInquiry,
   updatePrimaryFilter,
   updatePropertyFilter,
+  updatePropertyFilterValue,
+  updateDateFilter,
+  updateDateFilterValue,
   deleteModeOn,
   deleteModeOff
 } from '../../../ducks/inquiries';
@@ -31,7 +34,7 @@ class ViewInquiries extends Component {
     scrollToElement(`body`,{
       duration: 10
     });
-    this.props.getInquiryList();
+    this.props.getInquiryList(this.props.filterValues);
     if(this.props.inquiryList.length > 0){
       this.setState({
         hasReceivedAllProps: true
@@ -41,7 +44,7 @@ class ViewInquiries extends Component {
 
   componentWillReceiveProps(newProps){
     if(!this.state.hasReceivedAllProps){
-      newProps.getInquiryList();
+      newProps.getInquiryList(newProps.filterValues);
       if(newProps.inquiryList.length > 0){
         this.setState({
           hasReceivedAllProps: true
@@ -63,8 +66,12 @@ class ViewInquiries extends Component {
       filterValues,
       updatePrimaryFilter,
       updatePropertyFilter,
+      updatePropertyFilterValue,
+      updateDateFilterValue,
+      updateDateFilter,
       deleteModeOn,
-      deleteModeOff
+      deleteModeOff,
+      getInquiryList
     } = this.props;
     return (
       <main id='view-inquiries'>
@@ -72,8 +79,12 @@ class ViewInquiries extends Component {
           filterValues={filterValues}
           updatePrimaryFilter={updatePrimaryFilter}
           updatePropertyFilter={updatePropertyFilter}
+          updatePropertyFilterValue={updatePropertyFilterValue}
           deleteModeOn={deleteModeOn}
           deleteModeOff={deleteModeOff}
+          getInquiryList={getInquiryList}
+          updateDateFilter={updateDateFilter}
+          updateDateFilterValue={updateDateFilterValue}
         />
         <InquiryDisplay
           inquiryList={inquiryList}
@@ -84,6 +95,7 @@ class ViewInquiries extends Component {
           viewInquiryContentsOn={viewInquiryContentsOn}
           archiveInquiry={archiveInquiry}
           unarchiveInquiry={unarchiveInquiry}
+          filterValues={filterValues}
         />
       </main>
     )
@@ -114,6 +126,9 @@ const actionBuilders = {
   unarchiveInquiry,
   updatePrimaryFilter,
   updatePropertyFilter,
+  updatePropertyFilterValue,
+  updateDateFilterValue,
+  updateDateFilter,
   deleteModeOn,
   deleteModeOff
 }

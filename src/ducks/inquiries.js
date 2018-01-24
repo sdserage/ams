@@ -1,34 +1,53 @@
 import axios from 'axios';
-const _FULFILLED              = '_FULFILLED'
-    , GET_INQUIRY_LIST        = 'GET_INQUIRY_LIST'
-    , DELETE_ITEM             = 'DELETE_ITEM'
-    , ADD_ITEM                = 'ADD_ITEM'
-    , ACTIVATE                = 'ACTIVATE'
-    , DEACTIVATE              = 'DEACTIVATE'
-    , INQUIRY_CONTENTS_ON     = 'INQUIRY_CONTENTS_ON'
-    , INQUIRY_CONTENTS_OFF    = 'INQUIRY_CONTENTS_OFF'
-    , UPDATE_INQUIRY_CONTENTS = 'UPDATE_INQUIRY_CONTENTS'
-    , ARCHIVE_INQUIRY         = 'ARCHIVE_INQUIRY'
-    , UNARCHIVE_INQUIRY       = 'UNARCHIVE_INQUIRY'
-    , UPDATE_PRIMARY_FILTER   = 'UPDATE_PRIMARY_FILTER'
-    , UPDATE_PROPERTY_FILTER  = 'UPDATE_PROPERTY_FILTER'
-    , DELETE_MODE_ON          = 'DELETE_MODE_ON'
-    , DELETE_MODE_OFF         = 'DELETE_MODE_OFF'
-    , initialState            = {
-      itemCreatorOn:          false, //true
-      itemList:               [],
-      inquiryList:            [],
-      viewInquiryContentsOn:  false,
-      inquiryContents:        [],
+const _FULFILLED                    = '_FULFILLED'
+    , GET_INQUIRY_LIST              = 'GET_INQUIRY_LIST'
+    , DELETE_ITEM                   = 'DELETE_ITEM'
+    , ADD_ITEM                      = 'ADD_ITEM'
+    , ACTIVATE                      = 'ACTIVATE'
+    , DEACTIVATE                    = 'DEACTIVATE'
+    , INQUIRY_CONTENTS_ON           = 'INQUIRY_CONTENTS_ON'
+    , INQUIRY_CONTENTS_OFF          = 'INQUIRY_CONTENTS_OFF'
+    , UPDATE_INQUIRY_CONTENTS       = 'UPDATE_INQUIRY_CONTENTS'
+    , ARCHIVE_INQUIRY               = 'ARCHIVE_INQUIRY'
+    , UNARCHIVE_INQUIRY             = 'UNARCHIVE_INQUIRY'
+    , UPDATE_PRIMARY_FILTER         = 'UPDATE_PRIMARY_FILTER'
+    , UPDATE_PROPERTY_FILTER        = 'UPDATE_PROPERTY_FILTER'
+    , UPDATE_PROPERTY_FILTER_VALUE  = 'UPDATE_PROPERTY_FILTER_VALUE'
+    , UPDATE_DATE_FILTER            = 'UPDATE_DATE_FILTER'
+    , UPDATE_DATE_FILTER_VALUE      = 'UPDATE_DATE_FILTER_VALUE'
+    , DELETE_MODE_ON                = 'DELETE_MODE_ON'
+    , DELETE_MODE_OFF               = 'DELETE_MODE_OFF'
+    , initialState                  = {
+      itemCreatorOn:                false, //true
+      itemList:                     [],
+      inquiryList:                  [],
+      viewInquiryContentsOn:        false,
+      inquiryContents:              [],
       filterValues: {
-        primaryFilter:        'non-archived',
-        propertyFilter:       'No filter',
-        propertyFilterValue:  '',
-        deleteMode:           false
+        primaryFilter:              'non-archived',
+        propertyFilter:             'No filter',
+        propertyFilterValue:        '',
+        dateFilter:                 false,
+        dateFilterValue:            '',
+        deleteMode:                 false
       }
     };
 
 const url = '/api/';
+
+export function updateDateFilter(event, index, value){
+  return {
+    type: UPDATE_DATE_FILTER,
+    payload: value
+  }
+}
+
+export function updateDateFilterValue(event, index, value){
+  return {
+    type: UPDATE_DATE_FILTER_VALUE,
+    payload: value
+  }
+}
 
 export function deleteModeOn(){
   return {
@@ -43,25 +62,46 @@ export function deleteModeOff(){
   }
 }
 
-export function updatePropertyFilter(event, index, value,){
+export function updatePropertyFilter(event, index, value){
   return {
     type: UPDATE_PROPERTY_FILTER,
     payload: value
   }
 }
-export function updatePrimaryFilter(event, index, value,){
+
+export function updatePrimaryFilter(event, index, value){
   return {
     type: UPDATE_PRIMARY_FILTER,
     payload: value
   }
 }
 
-export function archiveInquiry(inquiry_id, queries){
+export function updatePropertyFilterValue(event, value){
+  return {
+    type: UPDATE_PROPERTY_FILTER_VALUE,
+    payload: value
+  }
+}
+
+export function archiveInquiry(inquiry_id, filterValues){
   const response = axios.put(`${url}inquiries/${inquiry_id}`)
     .then(resp=>{
+      const {
+        primaryFilter,
+        propertyFilter,
+        propertyFilterValue
+      } = filterValues;
+      let queries = [];
+      if(primaryFilter){
+        queries.push(`include=${primaryFilter}`);
+      }
+      if(propertyFilter !== 'No filter'){
+        queries.push(`${propertyFilter}=${propertyFilterValue}`);
+      }
       return axios.get(`${url}inquiries${
-        queries ? '?' + queries.join('&') : ''
-      }`).then(resp=>{
+        queries.length > 0 ? '?' + queries.join('&') : ''
+      }`)
+        .then(resp=>{
         return resp.data;
       });
     });
@@ -71,12 +111,25 @@ export function archiveInquiry(inquiry_id, queries){
   }
 }
 
-export function unarchiveInquiry(inquiry_id, queries){
+export function unarchiveInquiry(inquiry_id, filterValues){
   const response = axios.put(`${url}inquiries/${inquiry_id}`)
     .then(resp=>{
+      const {
+        primaryFilter,
+        propertyFilter,
+        propertyFilterValue
+      } = filterValues;
+      let queries = [];
+      if(primaryFilter){
+        queries.push(`include=${primaryFilter}`);
+      }
+      if(propertyFilter !== 'No filter'){
+        queries.push(`${propertyFilter}=${propertyFilterValue}`);
+      }
       return axios.get(`${url}inquiries${
-        queries ? '?' + queries.join('&') : ''
-      }`).then(resp=>{
+        queries.length > 0 ? '?' + queries.join('&') : ''
+      }`)
+        .then(resp=>{
         return resp.data;
       });
     });
@@ -111,9 +164,21 @@ export function inquiryContentsOn(){
   }
 }
 
-export function getInquiryList(queries){
+export function getInquiryList(filterValues){
+  const {
+    primaryFilter,
+    propertyFilter,
+    propertyFilterValue
+  } = filterValues;
+  let queries = [];
+  if(primaryFilter){
+    queries.push(`include=${primaryFilter}`);
+  }
+  if(propertyFilter !== 'No filter'){
+    queries.push(`${propertyFilter}=${propertyFilterValue}`);
+  }
   const response = axios.get(`${url}inquiries${
-    queries ? '?' + queries.join('&') : ''
+    queries.length > 0 ? '?' + queries.join('&') : ''
   }`)
     .then(resp=>{
       return resp.data;
@@ -189,12 +254,21 @@ export default function inquiries(state = initialState, action){
     case UPDATE_PROPERTY_FILTER:
       const filterValues_updatePropertyFilter = combineToNewObject(state.filterValues, {propertyFilter: payload})
       return combineToNewObject(state, {filterValues: filterValues_updatePropertyFilter});
+    case UPDATE_PROPERTY_FILTER_VALUE:
+      const filterValues_updatePropertyFilterValue = combineToNewObject(state.filterValues, {propertyFilterValue: payload})
+      return combineToNewObject(state, {filterValues: filterValues_updatePropertyFilterValue});
+    case UPDATE_DATE_FILTER_VALUE:
+      const filterValues_updateDateFilterValue = combineToNewObject(state.filterValues, {dateFilterValue: payload})
+      return combineToNewObject(state, {filterValues: filterValues_updateDateFilterValue});
+    case UPDATE_DATE_FILTER:
+      const filterValues_updateDateFilter = combineToNewObject(state.filterValues, {dateFilter: payload})
+      return combineToNewObject(state, {filterValues: filterValues_updateDateFilter});
     case DELETE_MODE_ON:
       const filterValues_deleteModeOn = combineToNewObject(state.filterValues, {deleteMode: payload});
       return combineToNewObject(state, {filterValues: filterValues_deleteModeOn});
     case DELETE_MODE_OFF:
-    const filterValues_deleteModeOff = combineToNewObject(state.filterValues, {deleteMode: payload});
-    return combineToNewObject(state, {filterValues: filterValues_deleteModeOff});
+      const filterValues_deleteModeOff = combineToNewObject(state.filterValues, {deleteMode: payload});
+      return combineToNewObject(state, {filterValues: filterValues_deleteModeOff});
     default:
       return state;
   }
