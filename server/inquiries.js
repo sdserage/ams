@@ -2,12 +2,12 @@ function filterQueries(inquiryList, query){
   const {name, email, date, phone_number, is_test} = query;
   return inquiryList.filter(inquiry=>{
     if(name){
-      if(inquiry.name.includes(name) === false){
+      if(inquiry.name.toLowerCase().includes(name.toLowerCase()) === false){
         return false;
       }
     }
     if(email){
-      if(inquiry.email.includes(email) === false){
+      if(inquiry.email.toLowerCase().includes(email.toLowerCase()) === false){
         return false;
       }
     }
@@ -18,7 +18,7 @@ function filterQueries(inquiryList, query){
       }
     }
     if(phone_number){
-      if(inquiry.phone_number.includes(phone_number) === false){
+      if(inquiry.phone_number.toLowerCase().includes(phone_number.toLowerCase()) === false){
         return false;
       }
     }
