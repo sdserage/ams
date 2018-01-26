@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {mediumColor} from '../../../../assets/globalConstants/colors';
 /* Components */
 import {Card, CardText, CardTitle} from 'material-ui/Card';
 import AppBar from 'material-ui/AppBar';
@@ -34,7 +35,9 @@ function displayInquiryList
   viewInquiryContentsOn,
   archiveInquiry,
   unarchiveInquiry,
+  deleteInquiry,
   filterValues){
+  const {deleteMode} = filterValues;
   if(inquiryList){
     const jsxList = inquiryList.map((inquiry, index)=>{
       const {
@@ -87,14 +90,22 @@ function displayInquiryList
             iconElementRight={
               <IconButton
                 onClick={()=>{
-                  if(is_archived){
-                    unarchiveInquiry(inquiry_id, filterValues);
+                  if(deleteMode){
+                    deleteInquiry(inquiry_id, filterValues);
                   }else{
-                    archiveInquiry(inquiry_id, filterValues);
+                    if(is_archived){
+                      unarchiveInquiry(inquiry_id, filterValues);
+                    }else{
+                      archiveInquiry(inquiry_id, filterValues);
+                    }
                   }
                 }}
               >
-                {is_archived ? <Unarchive/> : <Archive/>}
+                {
+                  deleteMode ? <Delete color={mediumColor}/> :
+                    is_archived ?
+                      <Unarchive/> : <Archive color={mediumColor}/>
+                }
               </IconButton>
             }
 
@@ -124,7 +135,9 @@ export default function InquiryDisplay(props){
     updateInquiryContents,
     viewInquiryContentsOn,
     archiveInquiry,
-    unarchiveInquiry
+    unarchiveInquiry,
+    filterValues,
+    deleteInquiry
   } = props;
   return(
     <section className='inquiry-display-wrapper'>
@@ -137,7 +150,9 @@ export default function InquiryDisplay(props){
           updateInquiryContents,
           viewInquiryContentsOn,
           archiveInquiry,
-          unarchiveInquiry
+          unarchiveInquiry,
+          deleteInquiry,
+          filterValues
         )
       }
     </section>
