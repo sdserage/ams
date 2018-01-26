@@ -50,9 +50,9 @@ export default function FilterInquiries(props){
             getInquiryList(updatedFilterValues);
           }}
         >
-          <MenuItem value='non-archived' primaryText='New Inquiries'/>
-          <MenuItem value='archived' primaryText='Archived Inquiries'/>
-          <MenuItem value='all' primaryText='All Inquiries'/>
+          <MenuItem value='non-archived' primaryText='New'/>
+          <MenuItem value='archived' primaryText='Archived'/>
+          <MenuItem value='all' primaryText='All'/>
         </DropDownMenu>
       </ToolbarGroup>
       <ToolbarGroup>
@@ -66,19 +66,25 @@ export default function FilterInquiries(props){
         <DatePicker
           hintText='Select a date...'
           disabled={dateFilter ? false : true}
+          onChange={(noEvent, date)=>{
+            updateDateFilterValue(date);
+            const updatedFilterValues = Object.assign(
+              {}, filterValues, {dateFilterValue: date}
+            );
+            getInquiryList(updatedFilterValues);
+          }}
         />
       </ToolbarGroup>
       <ToolbarGroup>
         <DropDownMenu value={propertyFilter} onChange={updatePropertyFilter}>
           <MenuItem value='No filter' primaryText='No filter' label='Filter by...'/>
-          <MenuItem value='date' primaryText='Date'/>
           <MenuItem value='name' primaryText='Name'/>
           <MenuItem value='email' primaryText='Email'/>
           <MenuItem value='phone_number' primaryText='Phone Number'/>
         </DropDownMenu>
         <TextField
           id='property-filter-field'
-          style={{backgroundColor: 'white'}}
+          hintText='Type filter value here'
           onChange={(event, value)=>{
             updatePropertyFilterValue(event, value);
             const updatedFilterValues = Object.assign(
