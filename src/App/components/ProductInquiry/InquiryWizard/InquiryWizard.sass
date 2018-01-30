@@ -2,36 +2,55 @@
 
 .inquiry-wizard
   padding: 10px
-  z-index: 10
   position: fixed
   top: 10vh
   right: 10vw
   bottom: 10vh
   left: 10vw
   background: $lighterColor
+  background-color: rgb(255, 255, 255)
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms
+  box-sizing: border-box
+  font-family: Ubuntu
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 45px, rgba(0, 0, 0, 0.22) 0px 10px 18px
+  border-radius: 2px
+  z-index: 6001
+  display: flex
+  justify-content: center
 
 .wizard-grid
   display: grid
-  grid-template-columns: repeat(10, 10%)
-  grid-template-rows: repeat(5, 30px)
+  grid-template-rows: repeat(15, 30px)
+  justify-items: center
 
 .wizard-cancel
-  display: grid
-  padding: 0
-  justify-self: end
-  grid-column: 10
+  position: absolute
+  right: 10px
 
-.root-title
+.wizard-page-title
   text-align: center
-  grid-column: 3/9
-  grid-row: 1
-  align-self: start
-  padding: 0
+  grid-row: 2
+
+.wizard-page-subtitle
+  text-align: center
+  grid-row: 6
+
+.wizard-select-field
+  grid-row: 4
+
+.wizard-number-input
+  @extend .wizard-select-field
+
+.wizard-text-field
+  @extend .wizard-select-field
+
+.wizard-text-field2
+  grid-row: 8
 
 .previous-next
   display: flex
-  grid-row: 8
-  grid-column: 5/7
+  grid-row: 14
   justify-content: center
 
 .next-button

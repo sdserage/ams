@@ -24,14 +24,18 @@ class InquiryWizard extends Component{
   render(){
     const {cancel, resetWizard} = this.props;
     return(
-      <Card className='inquiry-wizard' zDepth={4}>
-        <div className='wizard-grid'>
-          <RaisedButton className='wizard-cancel' secondary={true} label='Cancel' fullWidth={false} onClick={()=>{cancel(); resetWizard()}}/>
-          <Router>
-            {router}
-          </Router>
-        </div>
-      </Card>
+      <section className='inquiry-wizard'>
+        <RaisedButton
+          className='wizard-cancel'
+          secondary={true} label='Cancel'
+          fullWidth={false}
+          onClick={
+            ()=>{cancel(); resetWizard()}
+          }/>
+        <Router>
+          {router}
+        </Router>
+      </section>
     );
   }
 };
