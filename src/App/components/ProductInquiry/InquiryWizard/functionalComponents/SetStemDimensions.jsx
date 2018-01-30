@@ -17,16 +17,25 @@ function SetStemDimensions(props){
     updateStemAdditionalInformation
   } = props;
   return (
-    <div>
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Please specify the stem type below.
+      </h2>
       <SelectField
         hintText="Select..."
         value={stem_dimensions}
         onChange={updateStemDimensions}
+        className='wizard-select-field'
       >
         <MenuItem value='Double D' primaryText='Double D'/>
         <MenuItem value='Square' primaryText='Square'/>
       </SelectField>
+      <h4 className='wizard-page-subtitle'>
+        If you have further details about the stem,
+        please let us know in the space below.
+      </h4>
       <TextField
+        className='wizard-text-field2'
         id='set-stem-additional-information'
         hintText='Enter additional info here'
         value={stem_additional_information}

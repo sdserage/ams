@@ -19,7 +19,7 @@ const _FULFILLED                    = '_FULFILLED'
     , DELETE_MODE_OFF               = 'DELETE_MODE_OFF'
     , DELETE_INQUIRY                = 'DELETE_INQUIRY'
     , initialState                  = {
-      itemCreatorOn:                false, //true
+      itemCreatorOn:                true, //false, //
       itemList:                     [],
       inquiryList:                  [],
       viewInquiryContentsOn:        false,

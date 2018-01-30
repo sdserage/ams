@@ -5,18 +5,20 @@ import {updateItemType} from '../../../../../ducks/wizard';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import PathControl from './PathControl';
+import {Card} from 'material-ui/Card';
 
 function SetItemType(props){
   const {item_type, updateItemType, path} = props;
   return (
-    <div>
-      <h2 className='root-title'>What type of product are you looking for?</h2>
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>What type of product are you looking for?</h2>
       <SelectField
         hintText="Select..."
         value={item_type}
         onChange={updateItemType}
+        className='wizard-select-field'
       >
-        <MenuItem value='Actuator' primaryText='Actuator'/>
+        <MenuItem value='Actuator' primaryText='Actuator' style={{zIndex: '9000'}}/>
         <MenuItem value='Dust Collector' primaryText='Dust Collector'/>
         <MenuItem value='Instrumentation' primaryText='Instrumentation'/>
         <MenuItem value='Valve' primaryText='Valve'/>
@@ -26,7 +28,6 @@ function SetItemType(props){
         next={path[1]}
         conditionMet={item_type ? true : false}
       />
-
     </div>
   );
 }

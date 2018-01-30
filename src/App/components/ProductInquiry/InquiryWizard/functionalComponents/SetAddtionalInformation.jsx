@@ -15,8 +15,12 @@ function SetAdditionalInformation(props){
     updateAdditionalInformation
   } = props;
   return (
-    <div>
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Please enter any additional information below.
+      </h2>
       <TextField
+        className='wizard-text-field'
         id='set-additional-information'
         hintText='Enter additional info here'
         value={additional_information}
