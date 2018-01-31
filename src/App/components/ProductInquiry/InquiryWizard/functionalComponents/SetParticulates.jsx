@@ -5,137 +5,92 @@ import {updateParticulateTypes, updateParticulateSize} from '../../../../../duck
 import isValidNumber from '../../../../../assets/functions/isValidNumber';
 /* Components */
 import PathControl from './PathControl';
-import ParticulateCheckList from './ParticulateCheckList';
-
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import TextField from 'material-ui/TextField';
 import NumberInput from 'material-ui-number-input';
+
+const nonOther = [
+  'Grease',
+  'Metal',
+  'Oil Mist',
+  'Smoke',
+  'Sticky',
+  'Sugar',
+  'Wood'
+];
 
 class SetParticulates extends Component {
   constructor(props){
     super(props);
     this.state = {
-      particulateList: [
-        {name: 'Grease', checked: false},
-        {name: 'Metal', checked: false},
-        {name: 'Oil Mist', checked: false},
-        {name: 'Smoke', checked: false},
-        {name: 'Sticky', checked: false},
-        {name: 'Wood', checked: false},
-        {name: 'Other', checked: false}
-      ],
+      currentValue: '',
       otherValue: '',
       hasNotReceivedFromProps: true
     }
-    this.check = this.check.bind(this);
-    this.unCheck = this.unCheck.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.updateOtherValue = this.updateOtherValue.bind(this);
   }
 
   componentDidMount(){
     const {particulate_types} = this.props;
-    let copyList = this.state.particulateList.slice();
-    let copyOther = '';
-    const nonOther = ['Grease', 'Metal', 'Oil Mist', 'Smoke', 'Sticky', 'Wood'];
     if(particulate_types && this.state.hasNotReceivedFromProps){
-      let updatedCopy = copyList.map(particulate=>{
-        if(particulate_types.includes(particulate.name)){
-          particulate.checked = true;
-        }else if(particulate.name === 'Other' && !nonOther.includes(particulate_types[particulate_types.length - 1])){
-          particulate.checked = true;
-          copyOther = particulate_types[particulate_types.length-1];
-        }
-        return particulate;
-      });
-      this.setState({
-        particulateList: updatedCopy,
-        otherValue: copyOther,
-        hasNotReceivedFromProps: false
-      });
+      if(nonOther.includes(particulate_types)){
+        this.setState({
+          currentValue: particulate_types,
+          hasNotReceivedFromProps: false
+        });
+      }else{
+        this.setState({
+          currentValue: 'Other',
+          otherValue: particulate_types,
+          hasNotReceivedFromProps: false
+        });
+      }
     }
   }
 
   componentWillReceiveProps(newProps){
     const {particulate_types} = newProps;
-    let copyList = this.state.particulateList.slice();
-    let copyOther = '';
-    const nonOther = ['Grease', 'Metal', 'Oil Mist', 'Smoke', 'Sticky', 'Wood'];
     if(particulate_types && this.state.hasNotReceivedFromProps){
-      let updatedCopy = copyList.map(particulate=>{
-        if(particulate_types.includes(particulate.name)){
-          particulate.checked = true;
-        }else if(particulate.name === 'Other' && !nonOther.includes(particulate_types[particulate_types.length - 1])){
-          particulate.checked = true;
-          copyOther = particulate_types[particulate_types.length-1];
+      if(nonOther.includes(particulate_types)){
+        this.setState({
+          currentValue: particulate_types,
+          hasNotReceivedFromProps: false
+        });
+      }else{
+        this.setState({
+          currentValue: 'Other',
+          otherValue: particulate_types,
+          hasNotReceivedFromProps: false
+        });
+      }
+    }
+  }
 
-        }
-        return particulate
-      });
+  handleChange(event, index, value){
+    const {updateParticulateTypes} = this.props;
+    if(value !== 'Other'){
+      updateParticulateTypes(event, index, value);
       this.setState({
-        particulateList: updatedCopy,
-        otherValue: copyOther,
-        hasNotReceivedFromProps: false
+        currentValue: value
+      }, ()=>{
+        updateParticulateTypes(event, index, value);
+      });
+    }else{
+      this.setState({
+        currentValue: value
+      }, ()=>{
+        updateParticulateTypes(event, index, this.state.otherValue);
       });
     }
   }
 
-  check(index){
-    const {updateParticulateTypes} = this.props;
-    let copyList = this.state.particulateList.slice();
-    copyList[index].checked = true;
+  updateOtherValue(event, newVal){
     this.setState({
-      particulateList: copyList
-    }, ()=>{
-      let filteredList = [];
-      this.state.particulateList.map(particulate=>{
-        if(particulate.checked){
-          if(particulate.name === 'Other' && this.state.otherValue){
-            filteredList.push(this.state.otherValue);
-          }else if(particulate.name !== 'Other'){
-            filteredList.push(particulate.name);
-          }
-        }
-      });
-      updateParticulateTypes(filteredList);
+      otherValue: newVal
     });
-  }
-
-  unCheck(index){
-    const {updateParticulateTypes} = this.props;
-    let copyList = this.state.particulateList.slice();
-    copyList[index].checked = false;
-    this.setState({
-      particulateList: copyList
-    }, ()=>{
-      let filteredList = [];
-      this.state.particulateList.map(particulate=>{
-        if(particulate.checked){
-          if(particulate.name === 'Other' && this.state.otherValue){
-            filteredList.push(this.state.otherValue);
-          }else if(particulate.name !== 'Other'){
-            filteredList.push(particulate.name);
-          }
-        }
-      });
-      updateParticulateTypes(filteredList);
-    });
-  }
-
-  updateOtherValue(event, value){
-    const {updateParticulateTypes} = this.props;
-    this.setState({
-      otherValue: value
-    }, ()=>{
-      let filteredList = [];
-      this.state.particulateList.map(particulate=>{
-        if(particulate.checked){
-          if(particulate.name === 'Other' && this.state.otherValue){
-            filteredList.push(this.state.otherValue);
-          }else if(particulate.name !== 'Other'){
-            filteredList.push(particulate.name);
-          }
-        }
-      });
-      updateParticulateTypes(filteredList);
-    });
+    this.handleChange(event, 0, 'Other')
   }
 
   render(){
@@ -146,27 +101,53 @@ class SetParticulates extends Component {
       particulate_size,
       updateParticulateSize
     } = this.props;
-    const {particulateList, otherValue} = this.state;
+    const {currentValue, otherValue} = this.state;
     return (
-      <div>
-        <ParticulateCheckList
-          particulateList={particulateList}
-          check={this.check}
-          unCheck={this.unCheck}
-          updateOtherValue={this.updateOtherValue}
-          otherValue={otherValue}
-        />
-        <NumberInput
-          id='set-particulate-size'
-          onChange={updateParticulateSize}
-          min={0}
-          value={particulate_size}
-        />&micro;m
+      <div className='wizard-grid'>
+        <h2 className='wizard-page-title'>
+          Please select a particulate type.
+        </h2>
+        <div className='wizard-select-field plus'>
+          <SelectField
+            hintText="Select..."
+            value={currentValue}
+            onChange={this.handleChange}
+          >
+            <MenuItem value='Grease'    primaryText='Grease'/>
+            <MenuItem value='Metal'     primaryText='Metal'/>
+            <MenuItem value='Oil Mist'  primaryText='Oil Mist'/>
+            <MenuItem value='Smoke'     primaryText='Smoke'/>
+            <MenuItem value='Sticky'    primaryText='Sticky'/>
+            <MenuItem value='Sugar'     primaryText='Sugar'/>
+            <MenuItem value='Wood'      primaryText='Wood'/>
+            <MenuItem value='Other'     primaryText='Other'/>
+          </SelectField>
+          <TextField
+            disabled={currentValue === 'Other' ? false : true}
+            id='set-other-particulate'
+            hintText={currentValue === 'Other' ? 'Please type here.' : ''}
+            rowsMax={1}
+            multiLine={false}
+            onChange={this.updateOtherValue}
+            value={otherValue}
+          />
+        </div>
+        <h4 className='wizard-page-subtitle'>
+          Please select a particulate size.
+        </h4>
+        <div className='wizard-number-input2'>
+          <NumberInput
+            id='set-particulate-size'
+            onChange={updateParticulateSize}
+            min={0}
+            defaultValue={particulate_size}
+          />&micro;m
+        </div>
         <PathControl
           currentLocation={match.path}
           previous={''}
           next={'/temperature'}
-          conditionMet={isValidNumber(particulate_size) && particulate_types && particulate_types.length > 0}
+          conditionMet={isValidNumber(particulate_size) && particulate_types}
         />
       </div>
     );
