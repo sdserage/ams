@@ -9,13 +9,18 @@ import PathControl from './PathControl';
 function SetValveSize(props){
   const {path, match, updateValveSize, valve_size} = props;
   return (
-    <div>
-      <NumberInput
-        id='set-valve-size'
-        onChange={updateValveSize}
-        min={0}
-        defaultValue={valve_size}
-      />inch
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Please specify the valve size.
+      </h2>
+      <div className='wizard-number-input'>
+        <NumberInput
+          id='set-valve-size'
+          onChange={updateValveSize}
+          min={0}
+          defaultValue={valve_size}
+        />inch
+      </div>
       <PathControl
         currentLocation={match.path}
         previous={''}

@@ -10,6 +10,13 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 
+const zIndex = {
+  zIndex: {
+    popover: 9001,
+    layer: 9000
+  }
+}
+
 const lighterColor = 'white'
     , lightColor = '#30BCED'
     , mediumColor = '#931621'
@@ -48,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
+        <MuiThemeProvider muiTheme={getMuiTheme(theme, zIndex)}>
 
           <div className="App">
             <Router>

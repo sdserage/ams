@@ -46,7 +46,7 @@
 
 .inquiry-wizard-wrapper {
   position: fixed;
-  z-index: 1;
+  z-index: 6000;
   background: #545E75;
   opacity: .5;
   top: 0;

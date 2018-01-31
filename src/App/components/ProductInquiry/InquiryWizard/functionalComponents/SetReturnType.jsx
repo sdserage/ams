@@ -9,11 +9,15 @@ import PathControl from './PathControl';
 function SetReturnType(props){
   const {updateReturnType, return_type, path, match} = props;
   return (
-    <div>
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        What return does the valve use?
+      </h2>
       <SelectField
         hintText="Select..."
         value={return_type}
         onChange={updateReturnType}
+        className='wizard-select-field'
       >
         <MenuItem value='Double Acting' primaryText='Double Acting'/>
         <MenuItem value='Spring' primaryText='Spring'/>

@@ -18,16 +18,27 @@ function SetTorqueValue(props){
     match
   } = props;
   return (
-    <div>
-      <NumberInput
-        id='set-torque-value'
-        onChange={updateTorqueValue}
-        min={0}
-        defaultValue={torque}
-        value={torque}
-      />in-lb
-
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Enter required torque below.
+      </h2>
+      <div className='wizard-number-input'>
+        <NumberInput
+          id='set-torque-value'
+          onChange={updateTorqueValue}
+          min={0}
+          defaultValue={torque}
+          value={torque}
+        />in-lb
+      </div>
+      <h4 className='wizard-page-subtitle'>
+        If you are unsure about the torque required
+        or if you would like to provide further details
+        about your valve please enter additional information
+        in the space below.
+      </h4>
       <TextField
+        className='wizard-text-field2'
         id='set-valve-additional-information'
         hintText='Enter additional info here'
         value={valve_additional_information}
