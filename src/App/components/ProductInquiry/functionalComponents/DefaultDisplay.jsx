@@ -26,7 +26,7 @@ export default function DefaultDisplay(props){
         by case nature of ordering products from AMS, this product
         inquiry wizard was designed to allow anyone to easily submit
         an inquiry of desired products to AMS for evalutation. AMS
-        will be able to use this information to custom taylor the best
+        will be able to use this information to custom tailor the best
         products at the best prices for your process control or
         air pollution control.
       </CardText>
