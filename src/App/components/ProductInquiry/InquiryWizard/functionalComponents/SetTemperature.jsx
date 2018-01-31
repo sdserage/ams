@@ -16,13 +16,18 @@ function SetTemperature(props){
     updateTemperature
   } = props;
   return (
-    <div>
-    <NumberInput
-      id='set-temperature'
-      onChange={updateTemperature}
-      min={0}
-      defaultValue={temperature}
-    />&#8457;{/*&#8451;*/}
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Please specify the maximum (or minimum) temperature.
+      </h2>
+      <div className='wizard-number-input'>
+        <NumberInput
+          id='set-temperature'
+          onChange={updateTemperature}
+          min={0}
+          defaultValue={temperature}
+        />&#8457;{/*&#8451;*/}
+      </div>
       <PathControl
         currentLocation={match.path}
         previous={getPrevious(path, '/temperature')}

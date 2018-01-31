@@ -15,13 +15,18 @@ function SetPressure(props){
     updatePressure
   } = props;
   return (
-    <div>
-      <NumberInput
-        id='set-temperature'
-        onChange={updatePressure}
-        min={0}
-        defaultValue={pressure}
-      />psi
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Please specify the required pressure.
+      </h2>
+      <div className='wizard-number-input'>
+        <NumberInput
+          id='set-temperature'
+          onChange={updatePressure}
+          min={0}
+          defaultValue={pressure}
+        />psi
+      </div>
       <PathControl
         currentLocation={match.path}
         previous={'/temperature'}
