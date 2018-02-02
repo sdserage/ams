@@ -76,7 +76,7 @@ export function updateParticulateSize(event, particulate_size){
 }
 
 
-export function updateParticulateTypes(particulate_types){
+export function updateParticulateTypes(event, index, particulate_types){
   return {
     type: UPDATE_PARTICULATE_TYPES,
     payload: particulate_types

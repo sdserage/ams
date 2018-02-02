@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import './ProductInquiry.css';
 import {White} from 'material-ui/styles/colors';
 import {connect} from 'react-redux';
-import {activate, deactivate} from '../../../ducks/inquiries';
+import {
+  activate,
+  deactivate,
+  activateSubmitMenu,
+  deactivateSubmitMenu,
+  updateName,
+  updateEmail,
+  updatePhoneNumber,
+  submitItems} from '../../../ducks/inquiries';
 import {resetWizard} from '../../../ducks/wizard';
 /* Components */
 import InquiryWizard from './InquiryWizard/InquiryWizard';
@@ -26,21 +34,27 @@ class ProductInquiry extends Component {
     this.cancel = this.cancel.bind(this);
   }
 
-  startNewItem(){
-    this.props.activate();
-  };
+  startNewItem(){this.props.activate()};
 
-  cancel(){
-    this.props.deactivate();
-
-  };
+  cancel(){this.props.deactivate()};
 
   render(){
     const {
       itemList,
       deleteItem,
       itemCreatorOn,
-      resetWizard
+      resetWizard,
+      submitMenuOn,
+      activateSubmitMenu,
+      deactivateSubmitMenu,
+      anchorEl,
+      name,
+      email,
+      phone_number,
+      updateName,
+      updateEmail,
+      updatePhoneNumber,
+      submitItems
     } = this.props;
     const displayItems = itemList.map((item, index)=>{
       switch(item.item_type){
@@ -82,7 +96,22 @@ class ProductInquiry extends Component {
           <h1>{itemList.length > 1 ? 'Your Inquiry Items' : 'Your Inquiry Item'}</h1>
           {
             itemList && itemList.length > 0 &&
-              <ControlButtons addNewItem = {this.startNewItem} resetWizard={resetWizard} submitItems = {this.submitItems}/>
+              <ControlButtons
+                addNewItem={this.startNewItem}
+                resetWizard={resetWizard}
+                activateSubmitMenu={activateSubmitMenu}
+                deactivateSubmitMenu={deactivateSubmitMenu}
+                submitMenuOn={submitMenuOn}
+                submitItems={submitItems}
+                anchorEl={anchorEl}
+                name={name}
+                email={email}
+                phone_number={phone_number}
+                updateName={updateName}
+                updateEmail={updateEmail}
+                updatePhoneNumber={updatePhoneNumber}
+                itemList={itemList}
+              />
           }
           {displayItems}
         </section>
@@ -97,9 +126,7 @@ class ProductInquiry extends Component {
           itemCreatorOn &&
             <div>
               <div className='inquiry-wizard-wrapper'></div>
-
               <InquiryWizard cancel={this.cancel}/>
-
             </div>
         }
       </main>
@@ -108,11 +135,36 @@ class ProductInquiry extends Component {
 };
 
 function mapStateToProps(state){
-  const {itemList, itemCreatorOn} = state.inquiries;
+  const {
+    itemList,
+    itemCreatorOn,
+    submitMenuOn,
+    anchorEl,
+    name,
+    email,
+    phone_number
+  } = state.inquiries;
   return {
     itemList,
-    itemCreatorOn
+    itemCreatorOn,
+    submitMenuOn,
+    anchorEl,
+    name,
+    email,
+    phone_number
   }
 }
 
-export default connect(mapStateToProps, {activate, deactivate, resetWizard})(ProductInquiry);
+const actionBuilders = {
+  activate,
+  deactivate,
+  resetWizard,
+  activateSubmitMenu,
+  deactivateSubmitMenu,
+  updateName,
+  updateEmail,
+  updatePhoneNumber,
+  submitItems
+}
+
+export default connect(mapStateToProps, actionBuilders)(ProductInquiry);

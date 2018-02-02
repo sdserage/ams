@@ -29,14 +29,23 @@ function SetPipe(props){
     updatePipeAdditionalInformation
   } = props;
   return (
-    <div>
-      NPS<NumberInput
+    <div className='wizard-grid'>
+      <h2 className='wizard-page-title'>
+        Please specify the pipe size.
+      </h2>
+      <div className='wizard-number-input'>
+      NPS <NumberInput
         id='set-pipe-size'
         onChange={updatePipeSize}
         min={0}
         defaultValue={pipe_size}
       />inch
+      </div>
+      <h4 className='wizard-page-subtitle'>
+        Please enter any additional information about the pipe below.
+      </h4>
       <TextField
+        className='wizard-text-field2'
         id='set-pipe-additional-information'
         hintText='Enter additional info here'
         value={pipe_additional_information}

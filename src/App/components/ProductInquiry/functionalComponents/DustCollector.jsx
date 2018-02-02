@@ -40,7 +40,7 @@ function DustCollector(props){
       <div className='card-info'>
         <div className='double-column'>
           <CardText>
-            <span>Particulate Types: </span>{particulate_types.join(', ').toLowerCase()}
+            <span>Particulate Type: </span>{particulate_types}
           </CardText>
         </div>
 

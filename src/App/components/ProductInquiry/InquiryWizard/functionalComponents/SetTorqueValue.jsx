@@ -28,7 +28,6 @@ function SetTorqueValue(props){
           onChange={updateTorqueValue}
           min={0}
           defaultValue={torque}
-          value={torque}
         />in-lb
       </div>
       <h4 className='wizard-page-subtitle'>

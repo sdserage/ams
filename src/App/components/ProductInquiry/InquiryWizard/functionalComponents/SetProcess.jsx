@@ -91,28 +91,31 @@ class SetProcess extends Component{
     } = this.props;
     const {currentValue, otherValue} = this.state;
     return (
-      <div>
-        <SelectField
-          hintText="Select..."
-          value={currentValue}
-          onChange={this.handleChange}
-        >
-          <MenuItem value='Air'   primaryText='Air'/>
-          <MenuItem value='Steam' primaryText='Steam'/>
-          <MenuItem value='Water' primaryText='Water'/>
-          <MenuItem value='Other' primaryText='Other'/>
-        </SelectField>
-        {
-          currentValue === 'Other' &&
+      <div className='wizard-grid'>
+        <h2 className='wizard-page-title'>
+          Please select your process type.
+        </h2>
+        <div className='wizard-select-field plus'>
+          <SelectField
+            hintText="Select..."
+            value={currentValue}
+            onChange={this.handleChange}
+          >
+            <MenuItem value='Air'   primaryText='Air'/>
+            <MenuItem value='Steam' primaryText='Steam'/>
+            <MenuItem value='Water' primaryText='Water'/>
+            <MenuItem value='Other' primaryText='Other'/>
+          </SelectField>
           <TextField
+            disabled={currentValue === 'Other' ? false : true}
             id='set-other-process'
-            hintText={otherValue ? '' : 'Other'}
+            hintText={currentValue === 'Other' ? 'Please type here.' : ''}
             multiLine={false}
             rowsMax={1}
             onChange={this.updateOtherValue}
             value={otherValue}
           />
-        }
+        </div>
         <PathControl
           currentLocation={match.path}
           previous={''}
