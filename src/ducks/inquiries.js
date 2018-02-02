@@ -18,8 +18,19 @@ const _FULFILLED                    = '_FULFILLED'
     , DELETE_MODE_ON                = 'DELETE_MODE_ON'
     , DELETE_MODE_OFF               = 'DELETE_MODE_OFF'
     , DELETE_INQUIRY                = 'DELETE_INQUIRY'
+    , UPDATE_NAME                   = 'UPDATE_NAME'
+    , UPDATE_EMAIL                  = 'UPDATE_EMAIL'
+    , UPDATE_PHONE_NUMBER           = 'UPDATE_PHONE_NUMBER'
+    , ACTIVATE_SUBMIT_MENU          = 'ACTIVATE_SUBMIT_MENU'
+    , DEACTIVATE_SUBMIT_MENU        = 'DEACTIVATE_SUBMIT_MENU'
+    , SUBMIT_ITEMS                  = 'SUBMIT_ITEMS'
     , initialState                  = {
       itemCreatorOn:                false, //true,
+      submitMenuOn:                 false, //true,
+      achorEl:                      null,
+      name:                         '',
+      email:                        '',
+      phone_number:                 '',
       itemList:                     [],
       inquiryList:                  [],
       viewInquiryContentsOn:        false,
@@ -35,6 +46,53 @@ const _FULFILLED                    = '_FULFILLED'
     };
 
 const url = '/api/';
+
+export function updateName(event, value){
+  return {
+    type: UPDATE_NAME,
+    payload: value
+  }
+};
+
+export function updateEmail(event, value){
+  return {
+    type: UPDATE_EMAIL,
+    payload: value
+  }
+};
+
+export function updatePhoneNumber(event, value){
+  return {
+    type: UPDATE_PHONE_NUMBER,
+    payload: value
+  }
+};
+
+export function activateSubmitMenu(event){
+  event.preventDefault();
+  return {
+    type: ACTIVATE_SUBMIT_MENU,
+    payload: {
+      activate: true,
+      anchorEl: event.currentTarget
+    }
+  }
+}
+
+export function deactivateSubmitMenu(){
+  return {
+    type: DEACTIVATE_SUBMIT_MENU,
+    payload: false
+  }
+}
+
+export function submitItems(name, email, phone_number, itemList){
+  const response = axios.post(`${url}inquiries`, {name, email, phone_number, itemList})
+  return {
+    type: SUBMIT_ITEMS,
+    payload: []
+  }
+}
 
 export function deleteInquiry(inquiry_id, filterValues){
   const response = axios.delete(`${url}inquiries/${inquiry_id}`)
@@ -320,6 +378,18 @@ export default function inquiries(state = initialState, action){
       return combineToNewObject(state, {filterValues: filterValues_deleteModeOff});
     case DELETE_INQUIRY + _FULFILLED:
       return combineToNewObject(state, {inquiryList: payload});
+    case ACTIVATE_SUBMIT_MENU:
+      return combineToNewObject(state, {submitMenuOn: payload.activate, anchorEl: payload.anchorEl});
+    case DEACTIVATE_SUBMIT_MENU:
+      return combineToNewObject(state, {submitMenuOn: payload});
+    case UPDATE_NAME:
+      return combineToNewObject(state, {name: payload});
+    case UPDATE_EMAIL:
+      return combineToNewObject(state, {email: payload});
+    case UPDATE_PHONE_NUMBER:
+      return combineToNewObject(state, {phone_number: payload});
+    case SUBMIT_ITEMS: // + _FULFILLED:
+      return combineToNewObject(state, {itemList: payload});
     default:
       return state;
   }

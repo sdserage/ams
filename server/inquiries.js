@@ -61,7 +61,7 @@ function createInquiry(req, res, next){
               case 'Dust Collector':
                 db.create_dust_collector([
                   item_id,
-                  item.particulate_types.join(','),
+                  item.particulate_types,
                   item.particulate_size,
                   item.temperature,
                   item.additional_information
@@ -130,10 +130,6 @@ function getInquiryItems(req, res, next){
   if(inquiry_id){
     db.get_actuators_from_inquiry([inquiry_id]).then(actuators=>{
       db.get_dust_collectors_from_inquiry([inquiry_id]).then(dustCollectors=>{
-        dustCollectors = dustCollectors.map(dc=>{
-          dc.particulate_types = dc.particulate_types.split(',');
-          return dc;
-        })
         db.get_instrumentations_from_inquiry([inquiry_id]).then(instrumentations=>{
           db.get_valves_from_inquiry([inquiry_id]).then(valves=>{
             const itemList = [

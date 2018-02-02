@@ -60,7 +60,12 @@
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
   margin-bottom: 20px; }
-  .control-buttons div {
+
+.submit-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+  .submit-menu div {
     width: inherit; }
-  .control-buttons span {
+  .submit-menu span {
     color: white; }
