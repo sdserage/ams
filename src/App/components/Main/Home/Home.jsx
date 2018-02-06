@@ -24,7 +24,7 @@ export default function Home(props){
       improving the efficiency and/or productivity of your industrial process, AMS provides products and
       services that add value to your business. We simply make things better for our customers!
       Located in St. George, Utah, AMS serves Utah, Northern Arizona &amp; Southern Nevada. We proudly
-      represent the following manufactures:</p>
+      represent the following manufacturers:</p>
 
       {/*<div className='.temp'>LOGOS (Diversitech Air Pollution Solutions,
         Royal Filters, Quality Sourced Manufacturing, Jarecki Valves,
