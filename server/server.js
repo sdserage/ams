@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 3010
 /* Create express app */
 const app = express();
 /* Middleware */
+// static
+app.use(express.static(`${__dirname}/../build`));
 // cors
 app.use(cors());
 // body-parser
@@ -33,3 +35,8 @@ massive(process.env.CONNECTION_STRING).then(db => {
 
 auth(app);
 inquiries(app);
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
