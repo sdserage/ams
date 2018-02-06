@@ -13,8 +13,10 @@ export default class Main extends Component {
 
   componentDidMount(){
     const scrollToElement = require('scroll-to-element');
+    const offset = this.props.view === 'about' ? -79 : 0
     scrollToElement(`#${this.props.view}`,{
-      duration: 10
+      duration: 10,
+      offset: offset
     });
   }
 
