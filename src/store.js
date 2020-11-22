@@ -8,4 +8,4 @@ let reducer = combineReducers({
   wizard
 });
 
-export default createStore(reducer, applyMiddleware(promiseMiddleware()));
+export default createStore(reducer, applyMiddleware(promiseMiddleware));
